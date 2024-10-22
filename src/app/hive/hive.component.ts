@@ -3,6 +3,7 @@ import {StudentNodeComponent} from './student-node/student-node.component';
 import {MqttService} from './mqtt.service';
 import {interval, Subscription} from 'rxjs';
 import {NgForOf, NgIf} from '@angular/common';
+import {QuestionsComponent} from './questions/questions.component';
 
 
 @Component({
@@ -12,7 +13,8 @@ import {NgForOf, NgIf} from '@angular/common';
   imports: [
     StudentNodeComponent,
     NgForOf,
-    NgIf
+    NgIf,
+    QuestionsComponent
   ],
   styleUrls: ['./hive.component.css']
 })
@@ -95,6 +97,15 @@ export class HiveComponent {
       this.temp_generator.unsubscribe();
       this.temp_generator = null;
     }
+  }
+
+  handleEnter(input: HTMLInputElement) {
+    if (this.temp_generator) {
+      this.stopGenerator();
+    } else {
+      this.startGenerator();
+    }
+    input.blur();  // Deselect the input field
   }
 }
 

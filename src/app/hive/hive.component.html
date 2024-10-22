@@ -6,7 +6,9 @@
   <div class="mt-4">
     <input type="text"
            id="student-id"
+           #studentIdInput
            placeholder="Your student ID 66070xxx"
+           (keydown.enter)="handleEnter(studentIdInput)"
            class="w-64 border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
   </div>
 
@@ -21,6 +23,7 @@
     </button>
   </div>
 
+
   <hr class="my-6 border-gray-300 dark:border-gray-700">
 
   <ul class="flex flex-wrap justify-center mt-4">
@@ -29,4 +32,5 @@
     </li>
   </ul>
 
+  <app-questions></app-questions>
 </div>

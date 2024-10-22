@@ -11,7 +11,7 @@ module.exports = {
         darkBlue: '#1e3a8a', // Darker blue for dark mode (adjust as needed)
       },
       backgroundImage: {
-        'light-gradient': 'linear-gradient(152deg, rgba(236,239,247,1) 0%, rgba(246,255,253,1) 36%, rgba(252,250,255,1) 100%)',
+        'light-gradient': 'linear-gradient(113deg, rgba(222,231,255,1) 0%, rgba(236,255,251,1) 51%, rgba(244,236,255,1) 100%)',
         'dark-gradient': 'linear-gradient(113deg, rgba(13,24,60,1) 0%, rgba(0,36,9,1) 51%, rgba(25,17,42,1) 100%)',
 
       },
