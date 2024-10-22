@@ -1,68 +1,64 @@
-<div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4 dark:text-white">Questions</h1>
+<div class="container mx-auto p-6">
+  <h1 class="text-4xl font-bold mb-6 dark:text-white text-center">Questions</h1>
 
-  <div class="grid grid-cols-2 gap-4">
-
-    <div class="bg-white dark:bg-gray-800 bg-opacity-80 backdrop-blur-lg shadow-md rounded-lg p-4">
-      <h2 class="text-lg font-semibold mb-2 dark:text-white">Input (Serial Monitor)</h2>
-      <table class="w-full">
+  <div class="flex flex-col gap-6 md:flex-row md:gap-8">
+    <!-- Publish Section -->
+    <div class="bg-white dark:bg-gray-800 bg-opacity-80 backdrop-blur-lg shadow-lg rounded-lg p-6 flex-1">
+      <h2 class="text-2xl font-semibold mb-4 dark:text-white">Publish</h2>
+      <table class="w-full text-left">
         <thead class="border-b dark:border-gray-700">
-        <tr>
-          <th class="text-left px-2 py-1 dark:text-white">รายการ</th>
-          <th class="text-left px-2 py-1 dark:text-white">แสดงที่</th>
+        <tr class="text-center">
+          <th class="px-4 py-2 dark:text-white">ข้อ</th>
+          <th class="px-4 py-2 dark:text-white">รายการ</th>
+          <th class="px-4 py-2 dark:text-white">ส่งค่าขึ้น Message Broker</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="border-b dark:border-gray-700">
-          <td class="px-2 py-1 dark:text-white">อ่านค่าจาก Sensor อุณหภูมิ</td>
-          <td class="px-2 py-1 dark:text-white">Serial monitor</td>
+        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-4 py-2 dark:text-white">1</td>
+          <td class="px-4 py-2 dark:text-white">อ่านค่าจาก Sensor อุณหภูมิ</td>
+          <td class="px-4 py-2 dark:text-white">
+            Publish ไปที่ topic <code class="text-green-400 text-sm px-1">student_id/temp</code> ทุกๆ 5 วินาที
+          </td>
         </tr>
-        <tr class="border-b dark:border-gray-700">
-          <td class="px-2 py-1 dark:text-white">อ่านค่าจาก ตัวต้านทานปรับค่าได้ แล้วแสดงค่า (0-1023)</td>
-          <td class="px-2 py-1 dark:text-white">Serial monitor</td>
+        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-4 py-2 dark:text-white">2</td>
+          <td class="px-4 py-2 dark:text-white">อ่านค่าจาก ตัวต้านทานปรับค่าได้ แล้วแสดงค่า (0-1023)</td>
+          <td class="px-4 py-2 dark:text-white">
+            Publish ไปที่ topic <code class="text-green-400 text-sm px-1">student_id/light</code> ทุกๆ 1 วินาที
+          </td>
         </tr>
-        <tr class="">
-          <td class="px-2 py-1 dark:text-white">อ่านค่าระยะทางจาก Ultrasonic หน่วยเป็น cm</td>
-          <td class="px-2 py-1 dark:text-white">Serial monitor</td>
+        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-4 py-2 dark:text-white">3</td>
+          <td class="px-4 py-2 dark:text-white">อ่านค่าระยะทางจาก Ultrasonic หน่วยเป็น cm</td>
+          <td class="px-4 py-2 dark:text-white">ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic <code class="text-green-400 text-sm px-1">student_id/food</code> ถ้าน้อยว่าหรือเท่ากับ 20 cm ให้ Publish คำว่า on</td>
         </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4">
-      <h2 class="text-lg font-semibold mb-2 dark:text-white">Output (Web & LED)</h2>
-      <table class="w-full">
+    <!-- Subscribe Section -->
+    <div class="bg-white dark:bg-gray-800 bg-opacity-80 backdrop-blur-lg shadow-lg rounded-lg p-6 flex-1">
+      <h2 class="text-2xl font-semibold mb-4 dark:text-white">Subscribe</h2>
+      <table class="w-full text-left">
         <thead class="border-b dark:border-gray-700">
-        <tr>
-          <th class="text-left px-2 py-1 dark:text-white">รายการ</th>
-          <th class="text-left px-2 py-1 dark:text-white">แสดงที่</th>
+        <tr class="text-center">
+          <th class="px-4 py-2 dark:text-white">ข้อ</th>
+          <th class="px-4 py-2 dark:text-white">รายการ</th>
+          <th class="px-4 py-2 dark:text-white">รับค่าจาก Message Broker</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="border-b dark:border-gray-700">
-          <td class="px-2 py-1 dark:text-white">Publish ไปที่ topic student_id/temp ทุกๆ 5 วินาที</td>
-          <td class="px-2 py-1 dark:text-white">Web</td>
-        </tr>
-        <tr class="border-b dark:border-gray-700">
-          <td class="px-2 py-1 dark:text-white">Publish ไปที่ topic student_id/light ทุกๆ 1 วินาที</td>
-          <td class="px-2 py-1 dark:text-white">Web</td>
-        </tr>
-        <tr class="border-b dark:border-gray-700">
-          <td class="px-2 py-1 dark:text-white">ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic student_id/food
-            ถ้าน้อยว่าหรือเท่ากับ 20 cm ให้ Publish คำว่า on
-          </td>
-          <td class="px-2 py-1 dark:text-white">Web</td>
-        </tr>
-        <tr>
-          <td class="px-2 py-1 dark:text-white">นำค่าที่รับได้ แสดงผลออกทาง Color LED ดังนี้<br>
+        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-4 py-2 dark:text-white">1</td>
+          <td class="px-4 py-2 dark:text-white">Subscribe ค่าจาก Topic <code class="text-green-400 text-sm px-1">student_id/venus</code></td>
+          <td class="px-4 py-2 dark:text-white">
+            นำค่าที่รับได้ แสดงผลออกทาง Color LED ดังนี้<br>
             หากค่าตั้งแต่ 36 – 50 ให้ LED เป็นสีแดง<br>
             หากค่าตั้งแต่ 26 – 35 ให้ LED เป็นสีฟ้า<br>
             หากค่าตั้งแต่ 10 – 25 ให้ LED เป็นสีเขียว
           </td>
-          <td class="px-2 py-1 dark:text-white">Color LED</td>
         </tr>
-
-
         </tbody>
       </table>
     </div>
