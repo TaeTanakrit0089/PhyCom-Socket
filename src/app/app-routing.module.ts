@@ -1,10 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ContentComponent} from './components/content/content.component';
+import {ContentComponent} from './templates/content/content.component';
 
 const routes: Routes = [
   {path: '', component: ContentComponent},
-  {path: 'about', component: ContentComponent}  // Add more routes as needed
 ];
 
 @NgModule({
