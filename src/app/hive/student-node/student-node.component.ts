@@ -1,33 +1,23 @@
-import {Component, Input} from '@angular/core';
-import {NgClass, NgIf, NgStyle} from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import {NgClass, NgIf} from '@angular/common';
 
 @Component({
-  selector: 'student-node',
-  standalone: true,
+  selector: 'app-student-node',
   templateUrl: './student-node.component.html',
+  standalone: true,
   imports: [
-    NgStyle,
     NgClass,
     NgIf
   ],
   styleUrls: ['./student-node.component.css']
 })
-export class StudentNodeComponent {
-  @Input() student!: string; // The '!' indicates that this input is required.
-  light_color: string = 'rgba(255, 0, 0, 0)'; // Default light color
-  open_food: boolean = false; // Default food state
-  temp: number = 0; // Default temperature
+export class StudentNodeComponent implements OnInit {
+  @Input() student!: string;
+  @Input() light_color: string = 'rgba(255, 0, 0, 1)';
+  @Input() open_food: boolean = true;
+  @Input() temp: number = 20;
 
-  // Example methods to update properties can be added here
-  setLight(value: number) {
-    this.light_color = `rgba(255, 0, 0, ${value})`;
-  }
+  constructor() {}
 
-  setFood(value: string) {
-    this.open_food = value.toLowerCase() === 'on';
-  }
-
-  setTemp(value: number) {
-    this.temp = value;
-  }
+  ngOnInit(): void {}
 }

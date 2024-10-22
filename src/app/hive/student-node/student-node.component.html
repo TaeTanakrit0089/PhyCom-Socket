@@ -1,13 +1,11 @@
-<div class="flex flex-col items-center">
-  <i class="fa fa-5x fa-lightbulb-o" [ngStyle]="{'color': light_color}"></i>
-  <i class="fa fa-5x fa-paw" *ngIf="!open_food" style="color: #999"></i>
-  <i class="fa fa-5x fa-paw" *ngIf="open_food" style="color: #5cb85c"></i>
+<div>
+  <i class="fa fa-5x fa-lightbulb-o" [style.color]="light_color"></i>
+  <i class="fa fa-5x fa-paw" *ngIf="!open_food" style="color: #999;"></i>
+  <i class="fa fa-5x fa-paw" *ngIf="open_food" style="color: #5cb85c;"></i>
   <br>
-  <span class="label" [ngClass]="{
-        'text-yellow-500': temp < 10,
-        'text-green-500': temp >= 10
-    }">
-        {{ temp }} c.
+  <span class="label" style="font-size: 15px;"
+        [ngClass]="{'label-warning': temp < 10, 'label-success': temp >= 10}">
+    {{ temp }} c.
   </span>
   <br>
   <strong>{{ student }}</strong>

@@ -1,15 +1,21 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {AppRoutingModule} from './app-routing.module';
-
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {AppComponent} from './app.component';
+import {HiveComponent} from './hive/hive.component';
+import {StudentNodeComponent} from './hive/student-node/student-node.component';
 
 
 @NgModule({
-    declarations: [],
-    imports: [
-        CommonModule,
-        AppRoutingModule
-    ]
+  declarations: [],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppComponent,
+    HiveComponent,
+    StudentNodeComponent
+  ],
+  providers: [],
 })
 export class AppModule {
 }
