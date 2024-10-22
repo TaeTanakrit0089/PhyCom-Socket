@@ -12,7 +12,7 @@ export class MqttService {
 
     // Connect the MQTT client
     public connectClient(clientId: string, onConnect: () => void): void {
-        this.client = new Client('broker.hivemq.com', 8000, clientId);
+        this.client = new Client('broker.hivemq.com', 8884, clientId);
 
         this.client.onConnectionLost = this.onConnectionLost;
         this.client.onMessageArrived = this.onMessageArrived;
@@ -20,6 +20,7 @@ export class MqttService {
         this.client.connect({
             onSuccess: onConnect,
             onFailure: (error) => console.error('Connection failed:', error),
+            useSSL: true,
         });
     }
 

@@ -41,7 +41,6 @@ export class HiveComponent {
   startGenerator(): void {
     const studentId = (document.getElementById('student-id') as HTMLInputElement).value;
     this.STUDENTS = [studentId];
-
     if (this.temp_generator) return;
 
     this.client_ID = 'Server_' + new Date().getTime();
