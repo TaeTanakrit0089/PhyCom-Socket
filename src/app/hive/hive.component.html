@@ -1,30 +1,32 @@
-<div class="">
-  <div class="text-center my-4">
-    <h3 class="text-xl">Venus's temp</h3>
-    <span class="text-4xl text-blue-500">{{ current_temp }} c.</span>
-    <h3 class="text-xl">Student ID</h3>
-    <input type="text" class="border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded p-2"
-           id="student-id" placeholder="Your student ID 65070xxx">
-    <br>
+<div class="text-center dark:text-white">
 
-    <!-- Use *ngIf to conditionally show buttons based on temp_generator existence -->
-    <button class="mt-2 bg-blue-500 text-white rounded p-2" *ngIf="!temp_generator" (click)="startGenerator()">
+  <h3 class="text-2xl font-semibold mb-2">Venus's Temp</h3>
+  <span class="text-5xl font-bold text-blue-500 dark:text-blue-300">{{ current_temp }}°C</span>
+
+  <div class="mt-4">
+    <input type="text"
+           id="student-id"
+           placeholder="Your student ID 66070xxx"
+           class="w-64 border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
+  </div>
+
+  <div class="mt-4 flex justify-center space-x-4">
+    <button *ngIf="!temp_generator" (click)="startGenerator()"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
       Connect MQTT
     </button>
-    <button class="mt-2 bg-red-500 text-white rounded p-2" *ngIf="temp_generator" (click)="stopGenerator()">
+    <button *ngIf="temp_generator" (click)="stopGenerator()"
+            class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
       Disconnect MQTT
     </button>
   </div>
 
-  <div class="my-4">
-    <div class="text-center">
-      <hr class="my-4">
-      <ul class="flex flex-wrap justify-center">
-        <!-- Use *ngFor to loop over students -->
-        <li *ngFor="let student of STUDENTS" class="m-2">
-          <app-student-node [student]="student"></app-student-node>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <hr class="my-6 border-gray-300 dark:border-gray-700">
+
+  <ul class="flex flex-wrap justify-center mt-4">
+    <li *ngFor="let student of STUDENTS" class="m-2">
+      <app-student-node [student]="student"></app-student-node>
+    </li>
+  </ul>
+
 </div>
