@@ -1,1 +1,46 @@
-<p>hive works!</p>
+<div class="">
+    <div class="text-center my-4">
+        <h3 class="text-xl">Venus's temp</h3>
+        <span class="text-4xl text-blue-500">{{ current_temp }} c.</span>
+        <h3 class="text-xl">Student ID</h3>
+        <input type="text" class="border border-gray-300 rounded p-2" id="student-id"
+               placeholder="Your student ID 65070xxx">
+        <br>
+
+        <button class="mt-2 bg-blue-500 text-white rounded p-2" ng-show="!temp_generator" ng-click="startGenerator()">
+            Connect MQTT
+        </button>
+        <button class="mt-2 bg-red-500 text-white rounded p-2" ng-show="temp_generator" ng-click="stopGenerator()">
+            Disconnect MQTT
+        </button>
+    </div>
+
+    <div class="my-4">
+        <div class="text-center">
+            <hr class="my-4">
+            <ul class="flex flex-wrap justify-center">
+                <li ng-repeat="student in STUDENTS" class="m-2">
+                    <student-node student="student"></student-node>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="studentNode.html">
+    <div class="flex flex-col items-center">
+        <i class="fa fa-5x fa-lightbulb-o" style="color: {{ light_color }};"></i>
+        <i class="fa fa-5x fa-paw" ng-show="!open_food" style="color: #999"></i>
+        <i class="fa fa-5x fa-paw" ng-show="open_food" style="color: #5cb85c"></i>
+        <br>
+        <span class="label" ng-class="{'text-yellow-500': temp < 10, 'text-green-500': temp >= 10}"
+              style="font-size: 15px;">
+            {{ temp }} c.
+        </span>
+        <br>
+        <strong>{{ student }}</strong>
+    </div>
+</script>
+
+<script src="app/js/students.js"></script>
+<script src="app/js/main-hive.js"></script>
