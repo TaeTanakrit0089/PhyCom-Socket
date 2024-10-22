@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {NgClass, NgIf} from '@angular/common';
+import {Component, Input, OnInit} from '@angular/core';
+import {NgClass, NgIf, NgStyle} from '@angular/common';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {faPaw, faLightbulb} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-student-node',
@@ -7,7 +9,9 @@ import {NgClass, NgIf} from '@angular/common';
   standalone: true,
   imports: [
     NgClass,
-    NgIf
+    NgIf,
+    FontAwesomeModule,
+    NgStyle
   ],
   styleUrls: ['./student-node.component.css']
 })
@@ -17,7 +21,13 @@ export class StudentNodeComponent implements OnInit {
   @Input() open_food: boolean = true;
   @Input() temp: number = 20;
 
-  constructor() {}
+  faLightbulb = faLightbulb;
+  faPaw = faPaw;
 
-  ngOnInit(): void {}
+  constructor() {
+  }
+
+
+  ngOnInit(): void {
+  }
 }

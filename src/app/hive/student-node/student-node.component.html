@@ -1,12 +1,19 @@
-<div class="backdrop-blur-md bg-white dark:bg-gray-200/30 p-6 rounded-lg shadow-lg max-w-sm mx-auto">
-  <i class="fa fa-5x fa-lightbulb-o" [style.color]="light_color"></i>
-  <i class="fa fa-5x fa-paw" *ngIf="!open_food" style="color: #999;"></i>
-  <i class="fa fa-5x fa-paw" *ngIf="open_food" style="color: #5cb85c;"></i>
-  <br>
-  <span class="label" style="font-size: 15px;"
-        [ngClass]="{'label-warning': temp < 10, 'label-success': temp >= 10}">
+<div
+  class="backdrop-blur-md bg-white/50 dark:bg-gray-200/30 p-6 rounded-3xl shadow-lg max-w-sm mx-auto flex flex-col items-center">
+  <div class="flex items-center justify-center mb-4">
+    <fa-icon class="text-7xl" [icon]="faLightbulb" [style.color]="light_color"></fa-icon>
+    <fa-icon class="text-7xl ml-4" [icon]="faPaw" *ngIf="!open_food" style="color: #999;"></fa-icon>
+    <fa-icon class="text-7xl ml-4" [icon]="faPaw" *ngIf="open_food" style="color: #5cb85c;"></fa-icon>
+  </div>
+  <span class="label text-center text-2xl"
+        [ngStyle]="{
+        'background-color': temp < 10 ? '#ffcc00' : '#5cb85c',
+        'color': '#fff',
+        'padding': '0.5rem 1rem',
+        'border-radius': '0.80rem'
+      }">
     {{ temp }} c.
-  </span>
-  <br>
-  <strong>{{ student }}</strong>
+</span>
+
+  <strong class="mt-2">{{ student }}</strong>
 </div>
