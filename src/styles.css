@@ -3,9 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Apply dark mode styles to the body */
 body {
-  /*@apply bg-white dark:bg-gray-900;*/
-  @apply bg-light-gradient dark:bg-gray-900 text-black dark:text-white;
+  @apply bg-light-gradient dark:bg-dark-gradient text-black dark:text-white;
   font-family: 'Sarabun', sans-serif;
 }
