@@ -6,4 +6,5 @@
 /* Apply dark mode styles to the body */
 body {
   @apply bg-white dark:bg-gray-900;
+  font-family: 'Sarabun', sans-serif;
 }
