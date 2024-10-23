@@ -4,6 +4,7 @@ import {MqttService} from './mqtt.service';
 import {interval, Subscription} from 'rxjs';
 import {NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from './questions/questions.component';
+import {Title} from '@angular/platform-browser';
 
 
 @Component({
@@ -19,6 +20,7 @@ import {QuestionsComponent} from './questions/questions.component';
   styleUrls: ['./hive.component.css']
 })
 export class HiveComponent {
+  protected page_title: string = "PC 2023 Mock Exam";
   public STUDENTS: string[] = [];
   public current_temp: number = 0;
   public temp_data: number[][] = [[]];
@@ -28,7 +30,8 @@ export class HiveComponent {
   private min_temp: number = 10;
   private generator: number = 3;
 
-  constructor(private mqttService: MqttService) {
+  constructor(private mqttService: MqttService, private titleService: Title) {
+    this.titleService.setTitle(this.page_title);
   }
 
   ngOnInit() {

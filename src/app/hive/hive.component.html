@@ -1,36 +1,50 @@
-<div class="text-center dark:text-white">
+<header class="mt-5">
+  <h1 class="text-center text-4xl font-bold">Physical Computing Mock Exam</h1>
+</header>
 
-  <h3 class="text-2xl font-semibold mb-2">Venus's Temp</h3>
-  <span class="text-5xl font-bold text-blue-500 dark:text-blue-300">{{ current_temp }}°C</span>
+<div class="flex flex-row justify-center">
+  <div class="flex-grow flex p-6 max-w-[1280px] mt-7 justify-center">
+    <div class="text-center dark:text-white">
 
-  <div class="mt-4">
-    <input type="text"
-           id="student-id"
-           #studentIdInput
-           placeholder="Your student ID 66070xxx"
-           (keydown.enter)="handleEnter(studentIdInput)"
-           class="w-64 border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
+      <h3 class="text-2xl font-semibold mb-2">Venus's Temp</h3>
+      <span class="text-5xl font-bold text-blue-500 dark:text-blue-300">{{ current_temp }}°C</span>
+
+      <div class="mt-4">
+        <input type="text"
+               id="student-id"
+               #studentIdInput
+               placeholder="Your student ID 66070xxx"
+               (keydown.enter)="handleEnter(studentIdInput)"
+               class="w-64 border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
+      </div>
+
+      <div class="mt-4 flex justify-center space-x-4">
+        <button *ngIf="!temp_generator" (click)="startGenerator()"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+          Connect MQTT
+        </button>
+        <button *ngIf="temp_generator" (click)="stopGenerator()"
+                class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+          Disconnect MQTT
+        </button>
+      </div>
+
+
+      <hr class="my-6 border-gray-300 dark:border-gray-700">
+
+      <ul class="flex flex-wrap justify-center mt-4">
+        <li *ngFor="let student of STUDENTS" class="m-2">
+          <app-student-node [student]="student"></app-student-node>
+        </li>
+      </ul>
+
+      <app-questions [student]="STUDENTS"></app-questions>
+    </div>
   </div>
-
-  <div class="mt-4 flex justify-center space-x-4">
-    <button *ngIf="!temp_generator" (click)="startGenerator()"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
-      Connect MQTT
-    </button>
-    <button *ngIf="temp_generator" (click)="stopGenerator()"
-            class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
-      Disconnect MQTT
-    </button>
-  </div>
-
-
-  <hr class="my-6 border-gray-300 dark:border-gray-700">
-
-  <ul class="flex flex-wrap justify-center mt-4">
-    <li *ngFor="let student of STUDENTS" class="m-2">
-      <app-student-node [student]="student"></app-student-node>
-    </li>
-  </ul>
-
-  <app-questions [student]="STUDENTS"></app-questions>
 </div>
+
+<footer class="pb-1 text-center">
+  <a target="_blank" href="https://github.com/TaeTanakrit0089"><p>Created by TaeTanakrit0089</p></a>
+  <p class="text-sm text-gray-600 dark:text-gray-300">This website supports a dark theme, which you can change through
+    your system settings.</p>
+</footer>
