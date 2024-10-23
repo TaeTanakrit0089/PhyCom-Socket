@@ -8,8 +8,8 @@ import {Title} from '@angular/platform-browser';
 
 
 @Component({
-  selector: 'app-hive',
-  templateUrl: './hive.component.html',
+  selector: 'app-exam',
+  templateUrl: './exam.component.html',
   standalone: true,
   imports: [
     StudentNodeComponent,
@@ -17,9 +17,9 @@ import {Title} from '@angular/platform-browser';
     NgIf,
     QuestionsComponent
   ],
-  styleUrls: ['./hive.component.css']
+  styleUrls: ['./exam.component.css']
 })
-export class HiveComponent {
+export class ExamComponent {
   public STUDENTS: string[] = [];
   public current_temp: number = 0;
   public temp_data: number[][] = [[]];
@@ -62,9 +62,12 @@ export class HiveComponent {
 
     // Subscribe to student's topics
     this.STUDENTS.forEach((student) => {
-      this.mqttService.subscribeToTopic(`${student}/light`);
-      this.mqttService.subscribeToTopic(`${student}/food`);
-      this.mqttService.subscribeToTopic(`${student}/temp`);
+      const topics = [`${student}/light`, `${student}/food`, `${student}/temp`];
+
+      topics.forEach((topic) => {
+        this.mqttService.subscribeToTopic(topic);
+        console.log('Subscribed to topic:', topic);  // Log each topic
+      });
     });
 
     // Start generating temperature every 3 seconds
@@ -86,6 +89,7 @@ export class HiveComponent {
       this.resetValues();
     });
   }
+
 
   // Reset the student node values
   resetValues(): void {

@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {HiveComponent} from './hive.component';
+import {ExamComponent} from './exam.component';
 
 describe('HiveComponent', () => {
-  let component: HiveComponent;
-  let fixture: ComponentFixture<HiveComponent>;
+  let component: ExamComponent;
+  let fixture: ComponentFixture<ExamComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HiveComponent]
+      imports: [ExamComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(HiveComponent);
+    fixture = TestBed.createComponent(ExamComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
