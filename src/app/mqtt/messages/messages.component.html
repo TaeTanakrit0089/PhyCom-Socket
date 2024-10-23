@@ -8,7 +8,8 @@
       <li *ngFor="let message of messages.reverse()"
           class="max-w-full p-2 bg-gray-100 dark:bg-gray-700 rounded-md border border-gray-300 dark:border-gray-600 overflow-hidden">
         <div class="truncate">
-          <p class="whitespace-normal max-w-full break-words">{{ message }}</p> <!-- Allowing text to wrap and break -->
+          <p class="font-light text-sm">{{ message.topic }}</p>  <!-- Displaying the topic -->
+          <p class="text-lg ml-3 whitespace-normal max-w-full break-words"> {{ message.payload }}</p> <!-- Message content -->
         </div>
       </li>
     </ul>

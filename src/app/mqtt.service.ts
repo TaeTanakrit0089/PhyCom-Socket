@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Client, Message } from 'paho-mqtt';
+import {Injectable} from '@angular/core';
+import {Client, Message} from 'paho-mqtt';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,8 @@ export class MqttService {
   maxReconnectAttempts = 5; // Maximum number of reconnection attempts
   reconnectDelay = 1000; // Initial delay for reconnection in milliseconds
 
-  constructor() {}
+  constructor() {
+  }
 
   // Connect the MQTT client
   public connectClient(host: string, port: number, clientId: string, onConnect: () => void): void {
@@ -20,7 +21,6 @@ export class MqttService {
     this.client.onConnectionLost = this.onConnectionLost.bind(this);
     this.client.onMessageArrived = this.onMessageArrived.bind(this);
 
-    // Set a connection timeout of 5 seconds (5000 ms)
     const connectionTimeout = setTimeout(() => {
       console.error('Connection attempt timed out.');
       alert('Connection attempt timed out after 5 seconds.');
@@ -29,25 +29,15 @@ export class MqttService {
 
     this.client.connect({
       onSuccess: () => {
-        // Clear the timeout since connection was successful
         clearTimeout(connectionTimeout);
-
-        // Reset reconnection attempts
         this.reconnectAttempts = 0;
-
-        // Call the onConnect callback
         onConnect();
         this.isConnected = true;
-
-        // Display a success message
         console.log(`Connected to ${host}:${port} successfully.`);
       },
       onFailure: (error) => {
-        // Clear the timeout in case of a failure
         clearTimeout(connectionTimeout);
-
         console.error('Connection failed:', error);
-        // Alert the error message to the user
         alert(`Connection failed: ${error.errorMessage || 'Unknown error'}`);
       },
       useSSL: true,
@@ -97,8 +87,9 @@ export class MqttService {
       this.isConnected = false;
       console.log('Connection lost:', responseObject.errorMessage);
 
-      // Attempt to reconnect
-      this.reconnect();
+      // Alert the user and refresh the page
+      alert('Connection to the MQTT broker was lost. The page will refresh.');
+      window.location.reload(); // Refresh the page
     }
   }
 
@@ -112,7 +103,6 @@ export class MqttService {
 
       setTimeout(() => {
         this.connectClient(this.client.host, this.client.port, this.client.clientId, () => {
-          // Successful connection
           console.log('Reconnected successfully.');
         });
       }, delay);
