@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Client, Message} from 'paho-mqtt';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,9 @@ export class MqttService {
   reconnectAttempts = 0; // Track the number of reconnection attempts
   maxReconnectAttempts = 5; // Maximum number of reconnection attempts
   reconnectDelay = 1000; // Initial delay for reconnection in milliseconds
+
+  // Subject to broadcast messages
+  public messageArrived$ = new Subject<{ topic: string, payload: string }>();
 
   constructor() {
   }
@@ -81,10 +85,10 @@ export class MqttService {
     }
   }
 
-  // Handle incoming message
   onMessageArrived(message: Message): void {
     console.log('Message arrived:', message.payloadString);
-    // You can broadcast the message or handle it as needed
+    // Emit the message to subscribers
+    this.messageArrived$.next({ topic: message.destinationName, payload: message.payloadString });
   }
 
   // Handle connection loss

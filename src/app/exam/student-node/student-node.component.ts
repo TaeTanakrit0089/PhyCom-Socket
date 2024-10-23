@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, numberAttribute, OnInit} from '@angular/core';
 import {NgClass, NgIf, NgStyle} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faLightbulb, faPaw} from '@fortawesome/free-solid-svg-icons';
@@ -17,9 +17,9 @@ import {faLightbulb, faPaw} from '@fortawesome/free-solid-svg-icons';
 })
 export class StudentNodeComponent implements OnInit {
   @Input() student!: string;
-  @Input() light_color: string = 'rgba(255, 0, 0, 1)';
-  @Input() open_food: boolean = true;
-  @Input() temp: number = 20;
+  @Input({transform: numberAttribute}) light: number = 0;
+  @Input() open_food: string = '';
+  @Input({transform: numberAttribute}) temp: number = 20;
 
   faLightbulb = faLightbulb;
   faPaw = faPaw;

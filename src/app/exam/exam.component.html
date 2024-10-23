@@ -34,7 +34,9 @@
 
       <ul class="flex flex-wrap justify-center mt-4">
         <li *ngFor="let student of STUDENTS" class="m-2">
-          <app-student-node [student]="student"></app-student-node>
+          <app-student-node [student]="student" [light]="MESSAGE_LIGHT" [temp]="MESSAGE_TEMP"
+                            [open_food]="MESSAGE_FOOD">
+          </app-student-node>
         </li>
       </ul>
 
@@ -44,7 +46,7 @@
 </div>
 
 <footer class="pb-1 text-center">
-<!--  <a href="https://github.com/TaeTanakrit0089" target="_blank"><p>Created by TaeTanakrit0089</p></a>-->
+  <!--  <a href="https://github.com/TaeTanakrit0089" target="_blank"><p>Created by TaeTanakrit0089</p></a>-->
   <p class="text-sm text-gray-600 dark:text-gray-300">This website supports a dark theme, which you can change through
     your system settings.</p>
 </footer>

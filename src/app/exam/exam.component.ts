@@ -1,11 +1,10 @@
+import {interval, Subscription} from 'rxjs';
+import {MqttService} from '../mqtt.service';
+import {Title} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {StudentNodeComponent} from './student-node/student-node.component';
-import {MqttService} from '../mqtt.service';
-import {interval, Subscription} from 'rxjs';
 import {NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from './questions/questions.component';
-import {Title} from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-exam',
@@ -22,7 +21,6 @@ import {Title} from '@angular/platform-browser';
 export class ExamComponent {
   public STUDENTS: string[] = [];
   public current_temp: number = 0;
-  public temp_data: number[][] = [[]];
   public temp_generator: Subscription | null = null;
   protected page_title: string = "PC 2023 Mock Exam";
   private client_ID: string = '';
@@ -30,12 +28,32 @@ export class ExamComponent {
   private min_temp: number = 10;
   private generator: number = 3;
 
+  // Variables to store message data
+  public MESSAGE_LIGHT: string = '0';
+  public MESSAGE_FOOD: string = 'off';
+  public MESSAGE_TEMP: string = '20';
+
   constructor(private mqttService: MqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
   }
 
   ngOnInit() {
-    // The MQTT connection will be initialized by the service
+    // Subscribe to message events
+    this.mqttService.messageArrived$.subscribe((message) => {
+      this.handleMqttMessage(message);
+    });
+  }
+
+  // Handle MQTT messages
+  private handleMqttMessage(message: { topic: string, payload: string }) {
+    if (message.topic.endsWith('/light')) {
+      this.MESSAGE_LIGHT = message.payload;
+    } else if (message.topic.endsWith('/food')) {
+      this.MESSAGE_FOOD = message.payload;
+    } else if (message.topic.endsWith('/temp')) {
+      this.MESSAGE_TEMP = message.payload;
+    }
+    console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
   }
 
   sendMessage() {
@@ -54,7 +72,6 @@ export class ExamComponent {
     this.mqttService.connectClient("broker.hivemq.com", 8884, this.client_ID, () => this.startTempGenInterval());
   }
 
-  // Initialize temperature generator interval
   startTempGenInterval(): void {
     if (this.temp_generator) return;
 
@@ -90,15 +107,12 @@ export class ExamComponent {
     });
   }
 
-
-  // Reset the student node values
   resetValues(): void {
     this.mqttService.sendMessage('reset_light', '0');
     this.mqttService.sendMessage('reset_food', 'off');
     this.mqttService.sendMessage('reset_temp', '0');
   }
 
-  // Stop the temperature generator
   stopGenerator(): void {
     if (this.temp_generator) {
       this.temp_generator.unsubscribe();
@@ -115,4 +129,3 @@ export class ExamComponent {
     input.blur();  // Deselect the input field
   }
 }
-
