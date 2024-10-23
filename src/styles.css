@@ -4,6 +4,15 @@
 @tailwind utilities;
 
 body {
-  @apply bg-light-gradient dark:bg-dark-gradient text-black dark:text-white;
-  font-family: 'Sarabun', sans-serif;
+  @apply bg-light-gradient text-black;
+  font-family: Sarabun, serif;
+  /* Set default background */
+}
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-dark-gradient text-white;
+    /* Set background for dark mode */
+  }
 }
