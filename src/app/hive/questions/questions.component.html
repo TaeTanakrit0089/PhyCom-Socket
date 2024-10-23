@@ -18,20 +18,24 @@
           <td class="px-4 py-2 dark:text-white">1</td>
           <td class="px-4 py-2 dark:text-white">อ่านค่าจาก Sensor อุณหภูมิ</td>
           <td class="px-4 py-2 dark:text-white">
-            Publish ไปที่ topic <code class="text-green-400 text-sm px-1">student_id/temp</code> ทุกๆ 5 วินาที
+            Publish ไปที่ topic <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/temp</code> ทุกๆ 5 วินาที
           </td>
         </tr>
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-4 py-2 dark:text-white">2</td>
           <td class="px-4 py-2 dark:text-white">อ่านค่าจาก ตัวต้านทานปรับค่าได้ แล้วแสดงค่า (0-1023)</td>
           <td class="px-4 py-2 dark:text-white">
-            Publish ไปที่ topic <code class="text-green-400 text-sm px-1">student_id/light</code> ทุกๆ 1 วินาที
+            Publish ไปที่ topic <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/light</code> ทุกๆ 1
+            วินาที
           </td>
         </tr>
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-4 py-2 dark:text-white">3</td>
           <td class="px-4 py-2 dark:text-white">อ่านค่าระยะทางจาก Ultrasonic หน่วยเป็น cm</td>
-          <td class="px-4 py-2 dark:text-white">ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic <code class="text-green-400 text-sm px-1">student_id/food</code> ถ้าน้อยว่าหรือเท่ากับ 20 cm ให้ Publish คำว่า on</td>
+          <td class="px-4 py-2 dark:text-white">ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic <code
+            class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/food</code> ถ้าน้อยว่าหรือเท่ากับ 20 cm ให้ Publish
+            คำว่า on
+          </td>
         </tr>
         </tbody>
       </table>
@@ -51,7 +55,8 @@
         <tbody>
         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-4 py-2 dark:text-white">1</td>
-          <td class="px-4 py-2 dark:text-white">Subscribe ค่าจาก Topic <code class="text-green-400 text-sm px-1">student_id/venus</code></td>
+          <td class="px-4 py-2 dark:text-white">Subscribe ค่าจาก Topic <code
+            class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/venus</code></td>
           <td class="px-4 py-2 dark:text-white">
             นำค่าที่รับได้ แสดงผลออกทาง Color LED ดังนี้<br>
             หากค่าตั้งแต่ 36 – 50 ให้ LED เป็นสีแดง<br>

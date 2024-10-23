@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-questions',
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './questions.component.css'
 })
 export class QuestionsComponent {
+  @Input() student!: string[];
 
+  getStudentId(): string {
+    return this.student && this.student.length > 0 ? this.student[0] : 'student_id';
+  }
 }
