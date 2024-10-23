@@ -3,9 +3,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {HiveComponent} from './hive/hive.component';
 import {Error404Component} from './templates/error-404/error-404.component';
 import {MqttDashboard} from './mqtt/mqtt.component';
+import {HomePageComponent} from './home-page/home-page.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/exam', pathMatch: 'full'}, // Default route redirect to /exam
+  // {path: '', redirectTo: '/exam', pathMatch: 'full'}, // Default route redirect to /exam
+  {path: '', component: HomePageComponent},
   {path: 'exam', component: HiveComponent},
   {path: 'mqtt', component: MqttDashboard},
   // {path: '', component: HiveComponent},
