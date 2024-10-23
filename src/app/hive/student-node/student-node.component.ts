@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgClass, NgIf, NgStyle} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {faPaw, faLightbulb} from '@fortawesome/free-solid-svg-icons';
+import {faLightbulb, faPaw} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-student-node',

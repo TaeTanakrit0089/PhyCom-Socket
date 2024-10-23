@@ -1,23 +1,23 @@
 .blinking-border {
-  border-color: rgba(255, 0, 0, 0.8); /* Start with a solid red color */
-  animation: blink-animation 5.5s ease-in-out infinite, border-color 2s ease-in-out; /* Slower animation */
+    border-color: rgba(255, 0, 0, 0.8); /* Start with a solid red color */
+    animation: blink-animation 5.5s ease-in-out infinite, border-color 2s ease-in-out; /* Slower animation */
 }
 
 @keyframes blink-animation {
-  0%, 100% {
-    border-color: rgba(255, 0, 0, 0.8); /* Keep the border color red at the start and end */
-  }
-  50% {
-    border-color: rgba(255, 0, 0, 0.3); /* More subtle red in the middle */
-  }
+    0%, 100% {
+        border-color: rgba(255, 0, 0, 0.8); /* Keep the border color red at the start and end */
+    }
+    50% {
+        border-color: rgba(255, 0, 0, 0.3); /* More subtle red in the middle */
+    }
 }
 
 .success-border {
-  border-color: green; /* Final color when connected */
-  transition: border-color 2s ease-in-out, border-width 0.5s ease-in-out; /* Smooth transition for color and width */
+    border-color: green; /* Final color when connected */
+    transition: border-color 2s ease-in-out, border-width 0.5s ease-in-out; /* Smooth transition for color and width */
 }
 
 .no-border {
-  border-color: rgba(0, 128, 0, 0); /* Final color when connected */
-  transition: border-color 2s ease-in-out; /* Smooth transition for width */
+    border-color: rgba(0, 128, 0, 0); /* Final color when connected */
+    transition: border-color 2s ease-in-out; /* Smooth transition for width */
 }

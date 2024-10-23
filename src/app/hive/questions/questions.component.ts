@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {FaIconComponent, FaIconLibrary} from '@fortawesome/angular-fontawesome';
-import {faClipboard, faCheck} from '@fortawesome/free-solid-svg-icons';
+import {faCheck, faClipboard} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-questions',

@@ -10,20 +10,20 @@
       <span class="text-5xl font-bold text-blue-500 dark:text-blue-300">{{ current_temp }}°C</span>
 
       <div class="mt-4">
-        <input type="text"
-               id="student-id"
-               #studentIdInput
-               placeholder="Your student ID 66070xxx"
+        <input #studentIdInput
                (keydown.enter)="handleEnter(studentIdInput)"
-               class="w-64 border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
+               class="w-64 border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+               id="student-id"
+               placeholder="Your student ID 66070xxx"
+               type="text">
       </div>
 
       <div class="mt-4 flex justify-center space-x-4">
-        <button *ngIf="!temp_generator" (click)="startGenerator()"
+        <button (click)="startGenerator()" *ngIf="!temp_generator"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
           Connect MQTT
         </button>
-        <button *ngIf="temp_generator" (click)="stopGenerator()"
+        <button (click)="stopGenerator()" *ngIf="temp_generator"
                 class="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
           Disconnect MQTT
         </button>
@@ -44,7 +44,7 @@
 </div>
 
 <footer class="pb-1 text-center">
-  <a target="_blank" href="https://github.com/TaeTanakrit0089"><p>Created by TaeTanakrit0089</p></a>
+  <a href="https://github.com/TaeTanakrit0089" target="_blank"><p>Created by TaeTanakrit0089</p></a>
   <p class="text-sm text-gray-600 dark:text-gray-300">This website supports a dark theme, which you can change through
     your system settings.</p>
 </footer>

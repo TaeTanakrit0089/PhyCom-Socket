@@ -1,17 +1,17 @@
 <div
   class="backdrop-blur-md bg-white/50 dark:bg-gray-200/30 p-6 rounded-3xl shadow-lg max-w-sm mx-auto flex flex-col items-center">
   <div class="flex items-center justify-center mb-4">
-    <fa-icon class="text-7xl" [icon]="faLightbulb" [style.color]="light_color"></fa-icon>
-    <fa-icon class="text-7xl ml-4" [icon]="faPaw" *ngIf="!open_food" style="color: #999;"></fa-icon>
-    <fa-icon class="text-7xl ml-4" [icon]="faPaw" *ngIf="open_food" style="color: #5cb85c;"></fa-icon>
+    <fa-icon [icon]="faLightbulb" [style.color]="light_color" class="text-7xl"></fa-icon>
+    <fa-icon *ngIf="!open_food" [icon]="faPaw" class="text-7xl ml-4" style="color: #999;"></fa-icon>
+    <fa-icon *ngIf="open_food" [icon]="faPaw" class="text-7xl ml-4" style="color: #5cb85c;"></fa-icon>
   </div>
-  <span class="label text-center text-2xl"
-        [ngStyle]="{
+  <span [ngStyle]="{
         'background-color': temp < 10 ? '#ffcc00' : '#5cb85c',
         'color': '#fff',
         'padding': '0.5rem 1rem',
         'border-radius': '0.80rem'
-      }">
+      }"
+        class="label text-center text-2xl">
     {{ temp }} c.
 </span>
 

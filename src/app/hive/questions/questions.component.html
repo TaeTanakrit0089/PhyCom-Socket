@@ -21,7 +21,7 @@
             Publish ไปที่ topic
             <div class="flex flex-row">
               <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/temp</code>
-              <button class="ml-0.5" (click)="copyToClipboard('/temp')">
+              <button (click)="copyToClipboard('/temp')" class="ml-0.5">
                 <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>
@@ -34,7 +34,7 @@
             Publish ไปที่ topic
             <div class="flex flex-row">
               <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/light</code>
-              <button class="ml-0.5" (click)="copyToClipboard('/light')">
+              <button (click)="copyToClipboard('/light')" class="ml-0.5">
                 <fa-icon [icon]="getIcon('/light')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>
@@ -47,7 +47,7 @@
             ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic
             <div class="flex flex-row">
               <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/food</code>
-              <button class="ml-0.5" (click)="copyToClipboard('/food')">
+              <button (click)="copyToClipboard('/food')" class="ml-0.5">
                 <fa-icon [icon]="getIcon('/food')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>
@@ -74,7 +74,7 @@
           <td class="px-4 py-2 dark:text-white">Subscribe ค่าจาก Topic
             <div class="flex flex-row">
               <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/venus</code>
-              <button class="ml-0.5" (click)="copyToClipboard('/venus')">
+              <button (click)="copyToClipboard('/venus')" class="ml-0.5">
                 <fa-icon [icon]="getIcon('/venus')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>

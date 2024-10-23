@@ -20,11 +20,11 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./hive.component.css']
 })
 export class HiveComponent {
-  protected page_title: string = "PC 2023 Mock Exam";
   public STUDENTS: string[] = [];
   public current_temp: number = 0;
   public temp_data: number[][] = [[]];
   public temp_generator: Subscription | null = null;
+  protected page_title: string = "PC 2023 Mock Exam";
   private client_ID: string = '';
   private max_temp: number = 50;
   private min_temp: number = 10;
@@ -51,7 +51,7 @@ export class HiveComponent {
     this.client_ID = 'Server_' + new Date().getTime();
     console.log('Connect with client ID', this.client_ID);
 
-    this.mqttService.connectClient(this.client_ID, () => this.startTempGenInterval());
+    this.mqttService.connectClient("broker.hivemq.com", 8884, this.client_ID, () => this.startTempGenInterval());
   }
 
   // Initialize temperature generator interval

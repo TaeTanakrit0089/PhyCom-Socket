@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HiveComponent } from './hive.component';
+import {HiveComponent} from './hive.component';
 
 describe('HiveComponent', () => {
   let component: HiveComponent;
@@ -10,7 +10,7 @@ describe('HiveComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HiveComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(HiveComponent);
     component = fixture.componentInstance;

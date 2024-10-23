@@ -11,18 +11,42 @@ export class MqttService {
     }
 
     // Connect the MQTT client
-    public connectClient(clientId: string, onConnect: () => void): void {
-        this.client = new Client('broker.hivemq.com', 8884, clientId);
+    public connectClient(host: string, port: number, clientId: string, onConnect: () => void): void {
+        this.client = new Client(host, port, clientId);
 
         this.client.onConnectionLost = this.onConnectionLost;
         this.client.onMessageArrived = this.onMessageArrived;
 
+        // Set a connection timeout of 5 seconds (5000 ms)
+        const connectionTimeout = setTimeout(() => {
+            console.error('Connection attempt timed out.');
+            alert('Connection attempt timed out after 5 seconds.');
+            this.client.disconnect(); // Optionally disconnect if the connection is not established
+        }, 5000);
+
         this.client.connect({
-            onSuccess: onConnect,
-            onFailure: (error) => console.error('Connection failed:', error),
+            onSuccess: () => {
+                // Clear the timeout since connection was successful
+                clearTimeout(connectionTimeout);
+
+                // Call the onConnect callback
+                onConnect();
+
+                // Display a success message
+                console.log(`Connected to ${host}:${port} successfully.`);
+            },
+            onFailure: (error) => {
+                // Clear the timeout in case of a failure
+                clearTimeout(connectionTimeout);
+
+                console.error('Connection failed:', error);
+                // Alert the error message to the user
+                alert(`Connection failed: ${error.errorMessage || 'Unknown error'}`);
+            },
             useSSL: true,
         });
     }
+
 
     // Subscribe to a topic
     public subscribeToTopic(topic: string): void {
@@ -40,6 +64,16 @@ export class MqttService {
         console.log(`Message sent to ${topic}: ${payload}`);
     }
 
+    // Disconnect the MQTT client
+    public disconnect(): void {
+        if (this.client) {
+            this.client.disconnect();
+            console.log('Disconnected from MQTT broker');
+        } else {
+            console.log('No client to disconnect');
+        }
+    }
+
     // Handle connection loss
     private onConnectionLost(responseObject: any): void {
         if (responseObject.errorCode !== 0) {
@@ -51,15 +85,5 @@ export class MqttService {
     private onMessageArrived(message: Message): void {
         console.log('Message arrived:', message.payloadString);
         // You can broadcast the message or handle it as needed
-    }
-
-    // Disconnect the MQTT client
-    public disconnect(): void {
-        if (this.client) {
-            this.client.disconnect();
-            console.log('Disconnected from MQTT broker');
-        } else {
-            console.log('No client to disconnect');
-        }
     }
 }
