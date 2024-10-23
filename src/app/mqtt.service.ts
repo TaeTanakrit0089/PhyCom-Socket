@@ -5,7 +5,7 @@ import {Client, Message} from 'paho-mqtt';
     providedIn: 'root',
 })
 export class MqttService {
-    private client!: Client;
+    client!: Client;
 
     constructor() {
     }
@@ -51,5 +51,15 @@ export class MqttService {
     private onMessageArrived(message: Message): void {
         console.log('Message arrived:', message.payloadString);
         // You can broadcast the message or handle it as needed
+    }
+
+    // Disconnect the MQTT client
+    public disconnect(): void {
+        if (this.client) {
+            this.client.disconnect();
+            console.log('Disconnected from MQTT broker');
+        } else {
+            console.log('No client to disconnect');
+        }
     }
 }

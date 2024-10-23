@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {StudentNodeComponent} from './student-node/student-node.component';
-import {MqttService} from './mqtt.service';
+import {MqttService} from '../mqtt.service';
 import {interval, Subscription} from 'rxjs';
 import {NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from './questions/questions.component';
