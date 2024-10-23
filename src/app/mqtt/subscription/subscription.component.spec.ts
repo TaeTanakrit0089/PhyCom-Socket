@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SubscriptionComponent } from './subscription.component';
+import {SubscriptionComponent} from './subscription.component';
 
 describe('SubscriptionComponent', () => {
   let component: SubscriptionComponent;
@@ -10,7 +10,7 @@ describe('SubscriptionComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SubscriptionComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SubscriptionComponent);
     component = fixture.componentInstance;

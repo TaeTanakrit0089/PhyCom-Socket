@@ -38,22 +38,6 @@ export class SubscriptionComponent {
   constructor(protected mqttService: MqttService) {
   }
 
-  private getRandomColor(): string {
-    if (this.usedColors.size === this.colors.length) {
-      console.warn('All colors have been used. No more unique colors available.');
-      return '#FFFFFF'; // Return a default color if all are used
-    }
-
-    let randomColor: string;
-    do {
-      const randomIndex = Math.floor(Math.random() * this.colors.length);
-      randomColor = this.colors[randomIndex];
-    } while (this.usedColors.has(randomColor)); // Keep selecting until a unique color is found
-
-    this.usedColors.add(randomColor); // Mark this color as used
-    return randomColor;
-  }
-
   subscribeTopic(): void {
     if (this.topic.trim() !== '') { // Check if the topic is not empty
       const bgColor = this.getRandomColor(); // Get a unique background color
@@ -73,6 +57,22 @@ export class SubscriptionComponent {
     } else {
       console.warn('Invalid index for unsubscribing from topic.');
     }
+  }
+
+  private getRandomColor(): string {
+    if (this.usedColors.size === this.colors.length) {
+      console.warn('All colors have been used. No more unique colors available.');
+      return '#FFFFFF'; // Return a default color if all are used
+    }
+
+    let randomColor: string;
+    do {
+      const randomIndex = Math.floor(Math.random() * this.colors.length);
+      randomColor = this.colors[randomIndex];
+    } while (this.usedColors.has(randomColor)); // Keep selecting until a unique color is found
+
+    this.usedColors.add(randomColor); // Mark this color as used
+    return randomColor;
   }
 
 }

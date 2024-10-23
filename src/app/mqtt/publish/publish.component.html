@@ -10,16 +10,16 @@
         <div class="flex-1 min-w-[200px]">
           <label class="block font-medium">Topic</label>
           <input [(ngModel)]="topic"
-                 name="topic"
                  class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+                 name="topic"
                  type="text">
         </div>
 
         <div class="flex-1 min-w-[80px]">
           <label class="block font-medium">QoS</label>
           <select [(ngModel)]="qos"
-                  name="qos"
-                  class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
+                  class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+                  name="qos">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -28,13 +28,13 @@
 
         <div class="flex items-center">
           <label class="flex items-center font-medium">
-            <input type="checkbox" [(ngModel)]="retain" name="retain" class="mr-2"> Retain
+            <input [(ngModel)]="retain" class="mr-2" name="retain" type="checkbox"> Retain
           </label>
         </div>
 
         <div class="flex-1 min-w-[100px]">
-          <button type="button" class="mt-7 px-3 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded"
-                  (click)="publishMessage()" [disabled]="!mqttService.isConnected">Publish
+          <button (click)="publishMessage()" [disabled]="!mqttService.isConnected"
+                  class="mt-7 px-3 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded" type="button">Publish
           </button>
         </div>
       </div>
@@ -42,8 +42,8 @@
       <div class="flex flex-wrap gap-2">
         <div class="flex-1 w-full">
           <label class="block font-medium">Message</label>
-          <textarea [(ngModel)]="payload" name="payload"
-                    class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"></textarea>
+          <textarea [(ngModel)]="payload" class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+                    name="payload"></textarea>
         </div>
       </div>
     </form>

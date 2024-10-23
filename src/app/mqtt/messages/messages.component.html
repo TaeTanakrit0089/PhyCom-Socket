@@ -3,13 +3,14 @@
     <h3 class="font-semibold text-2xl">Messages</h3>
   </div>
 
-  <div class="w-full rounded-3xl shadow drop-shadow-xl p-4 backdrop-blur-xl" id="messagesMain">
+  <div class="" id="messagesMain">
     <ul class="space-y-2">
       <li *ngFor="let message of messages.reverse()"
-          class="max-w-full p-2 bg-gray-100 dark:bg-gray-700 rounded-md border border-gray-300 dark:border-gray-600 overflow-hidden">
+          class="max-w-full p-2 bg-white/70 dark:bg-gray-800/70 rounded-sm border border-gray-300 dark:border-gray-600 overflow-hidden backdrop-blur-xl">
         <div class="truncate">
           <p class="font-light text-sm">{{ message.topic }}</p>  <!-- Displaying the topic -->
-          <p class="text-lg ml-3 whitespace-normal max-w-full break-words"> {{ message.payload }}</p> <!-- Message content -->
+          <p class="text-lg ml-3 whitespace-normal max-w-full break-words"> {{ message.payload }}</p>
+          <!-- Message content -->
         </div>
       </li>
     </ul>

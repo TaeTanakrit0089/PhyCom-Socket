@@ -81,6 +81,12 @@ export class MqttService {
     }
   }
 
+  // Handle incoming message
+  onMessageArrived(message: Message): void {
+    console.log('Message arrived:', message.payloadString);
+    // You can broadcast the message or handle it as needed
+  }
+
   // Handle connection loss
   private onConnectionLost(responseObject: any): void {
     if (responseObject.errorCode !== 0) {
@@ -109,11 +115,5 @@ export class MqttService {
     } else {
       console.warn('Max reconnect attempts reached. Could not reconnect to the MQTT broker.');
     }
-  }
-
-  // Handle incoming message
-  onMessageArrived(message: Message): void {
-    console.log('Message arrived:', message.payloadString);
-    // You can broadcast the message or handle it as needed
   }
 }

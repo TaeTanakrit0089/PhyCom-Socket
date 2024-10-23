@@ -5,16 +5,16 @@ import {SubscriptionComponent} from './subscription/subscription.component';
 import {MessagesComponent} from './messages/messages.component';
 
 @Component({
-    selector: 'app-mqtt',
-    standalone: true,
+  selector: 'app-mqtt',
+  standalone: true,
   imports: [
     MqttConnectionComponent,
     PublishComponent,
     SubscriptionComponent,
     MessagesComponent
   ],
-    templateUrl: './mqtt.component.html',
-    styleUrl: './mqtt.component.css'
+  templateUrl: './mqtt.component.html',
+  styleUrl: './mqtt.component.css'
 })
 export class MqttDashboard {
 

@@ -9,15 +9,15 @@
       <div class="flex flex-wrap gap-2">
         <div class="flex-1 min-w-[200px]">
           <label class="block font-medium">Topic</label>
-          <input [(ngModel)]="topic" name="topic"
-                 class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+          <input [(ngModel)]="topic" class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+                 name="topic"
                  type="text">
         </div>
 
         <div class="flex-1 min-w-[80px]">
           <label class="block font-medium">QoS</label>
-          <select [(ngModel)]="qos" name="qos"
-                  class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
+          <select [(ngModel)]="qos" class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+                  name="qos">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -25,8 +25,8 @@
         </div>
 
         <div class="flex-1 min-w-[100px]">
-          <button type="button" class="mt-7 px-3 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded"
-                  (click)="subscribeTopic()" [disabled]="!mqttService.isConnected">Subscribe
+          <button (click)="subscribeTopic()" [disabled]="!mqttService.isConnected"
+                  class="mt-7 px-3 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded" type="button">Subscribe
           </button>
         </div>
       </div>
@@ -37,11 +37,11 @@
       <h4 class="font-semibold text-lg">Subscribed Topics:</h4>
       <div class="mt-2 max-w-fit overflow-x-auto"> <!-- Set a fixed width, e.g., 300px -->
         <ul class="flex space-x-4">
-          <li *ngFor="let subscribedTopic of subscribedTopics; let i = index"
+          <li (click)="unsubscribeTopic(i)"
+              *ngFor="let subscribedTopic of subscribedTopics; let i = index"
               [ngStyle]="{ 'background-color': subscribedTopic.bgColor }"
-              (click)="unsubscribeTopic(i)"
-          class="text-black font-bold p-2 bg-gray-100 dark:bg-gray-700 rounded-md border border-gray-300 dark:border-gray-600 cursor-pointer">
-          {{ subscribedTopic.topic }}
+              class="text-black font-bold p-2 bg-gray-100 dark:bg-gray-700 rounded-md border border-gray-300 dark:border-gray-600 cursor-pointer">
+            {{ subscribedTopic.topic }}
           </li>
         </ul>
       </div>

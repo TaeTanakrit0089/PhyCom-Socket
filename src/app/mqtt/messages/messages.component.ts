@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { MqttService } from '../../mqtt.service';
-import { DatePipe, NgForOf, SlicePipe } from '@angular/common';
+import {Component} from '@angular/core';
+import {MqttService} from '../../mqtt.service';
+import {DatePipe, NgForOf, SlicePipe} from '@angular/common';
 
 interface Message {
   topic: string;
