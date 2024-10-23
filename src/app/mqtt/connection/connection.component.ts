@@ -28,10 +28,9 @@ export class MqttConnectionComponent implements OnInit {
     lwRetain: boolean = false;
     lwMessage: string = '';
 
-    isConnected: boolean = false;
     showSuccessBorder = false;
 
-    constructor(private mqttService: MqttService) {
+    constructor(protected mqttService: MqttService) {
     }
 
     ngOnInit(): void {
@@ -51,7 +50,6 @@ export class MqttConnectionComponent implements OnInit {
         this.mqttService.connectClient(this.host, this.port, clientId, () => {
             // console.log('Connected successfully');
             // this.mqttService.subscribeToTopic(this.lwTopic); // Subscribe to Last-Will Topic if set
-            this.isConnected = true;
             this.showSuccessBorder = true;
             setTimeout(() => {
                 this.showSuccessBorder = false; // Hide the border
@@ -61,7 +59,6 @@ export class MqttConnectionComponent implements OnInit {
 
     disconnect(): void {
         this.mqttService.disconnect();
-        this.isConnected = false;
     }
 
     show_connection() {
