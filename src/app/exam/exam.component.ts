@@ -5,6 +5,7 @@ import {Component} from '@angular/core';
 import {StudentNodeComponent} from './student-node/student-node.component';
 import {NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from './questions/questions.component';
+import {MqttConnectionComponent} from './mqtt-connection/mqtt-connection.component';
 
 @Component({
   selector: 'app-exam',
@@ -14,9 +15,13 @@ import {QuestionsComponent} from './questions/questions.component';
     StudentNodeComponent,
     NgForOf,
     NgIf,
-    QuestionsComponent
+    QuestionsComponent,
+    MqttConnectionComponent
   ],
-  styleUrls: ['./exam.component.css']
+  styleUrls: [
+    './exam.component.css',
+    '../mqtt/connection/connection.component.css'
+  ]
 })
 export class ExamComponent {
   public STUDENTS: string[] = [];
