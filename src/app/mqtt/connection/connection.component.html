@@ -1,10 +1,10 @@
 <div class="flex flex-col w-full" id="connection">
   <div class="flex justify-between items-center mb-2">
-    <h3 class="font-semibold text-2xl">Connection</h3>
-<!--    <div class="flex items-center" id="connectionStatus"></div>-->
-<!--    <a (click)="show_connection()" class="text-gray-500 hover:text-gray-700">-->
-<!--      <div class="icon-arrow-chevron"></div>-->
-<!--    </a>-->
+    <h3 class="font-semibold text-3xl">Connection</h3>
+    <!--    <div class="flex items-center" id="connectionStatus"></div>-->
+    <!--    <a (click)="show_connection()" class="text-gray-500 hover:text-gray-700">-->
+    <!--      <div class="icon-arrow-chevron"></div>-->
+    <!--    </a>-->
   </div>
 
   <div
@@ -13,42 +13,56 @@
       'blinking-border': !mqttService.isConnected,
       'no-border': !showSuccessBorder && mqttService.isConnected
     }"
-    class="w-full bg-white/70 dark:bg-gray-800/70 rounded-3xl shadow drop-shadow-xl p-4 border-2 backdrop-blur-xl"
-    id="conniMain">
+    class="w-full bg-white/70 dark:bg-gray-800/70 rounded-lg shadow drop-shadow-xl sm:px-8 px-6 py-6 border-2 backdrop-blur-xl"
+    id="conniMain"
+  >
     <form class="space-y-3">
-      <div class="flex flex-wrap gap-2">
+      <div class="flex flex-col w-full md:flex-row gap-x-2 gap-4">
         <div class="flex-1 min-w-[200px]">
           <label class="block font-medium">Host</label>
-          <input [(ngModel)]="host"
-                 class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
-                 name="host"
-                 type="text">
+          <input
+            [(ngModel)]="host"
+            class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+            name="host"
+            type="text"
+          />
         </div>
 
         <div class="flex-1 min-w-[80px]">
           <label class="block font-medium">Port</label>
-          <input [(ngModel)]="port"
-                 class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
-                 name="port"
-                 type="number">
+          <input
+            [(ngModel)]="port"
+            class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+            name="port"
+            type="number"
+          />
         </div>
 
         <div class="flex-1 min-w-[150px]">
           <label class="block font-medium">ClientID</label>
-          <input [(ngModel)]="clientId"
-                 class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
-                 name="clientId"
-                 type="text">
+          <input
+            [(ngModel)]="clientId"
+            class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+            name="clientId"
+            type="text"
+          />
         </div>
-
-        <div class="flex items-center">
-          <button (click)="connect()" *ngIf="!mqttService.isConnected"
-                  class="mt-7 mr-2 px-3 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded"
-                  type="button">Connect
+        <div class="flex items-end md:w-32 w-full md:pt-0 pt-4">
+          <button
+            (click)="connect()"
+            *ngIf="!mqttService.isConnected"
+            class="px-3 h-[42px] w-full text-white bg-blue-600 hover:bg-blue-700 rounded"
+            type="button"
+          >
+            Connect
           </button>
-          <button (click)="disconnect()" *ngIf="mqttService.isConnected"
-                  class="mt-7 px-3 py-1 text-white bg-red-600 hover:bg-red-700 rounded"
-                  type="button">Disconnect
+          <button
+            (click)="disconnect()"
+            *ngIf="mqttService.isConnected"
+            class="h-[42px] px-3 py-1 text-white bg-red-600 hover:bg-red-700 rounded"
+            type="button"
+          >
+            Disconnect
           </button>
         </div>
       </div>
@@ -112,9 +126,14 @@
       <!--                  class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"></textarea>-->
       <!--      </div>-->
     </form>
-    <h3 [ngClass]="{'text-green-600': mqttService.isConnected, 'text-red-600': !mqttService.isConnected}"
-        class="text-center font-bold text-xl bg-opacity-50 mt-5">
-      {{ mqttService.isConnected ? 'Connected' : 'Not connected' }}
+    <h3
+      [ngClass]="{
+        'text-green-600': mqttService.isConnected,
+        'text-red-600': !mqttService.isConnected
+      }"
+      class="text-center font-bold text-xl bg-opacity-50 mt-5"
+    >
+      {{ mqttService.isConnected ? "Connected" : "Not connected" }}
     </h3>
   </div>
 </div>
