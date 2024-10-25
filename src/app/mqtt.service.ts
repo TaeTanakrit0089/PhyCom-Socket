@@ -19,7 +19,7 @@ export class MqttService {
   }
 
   // Connect the MQTT client
-  public connectClient(host: string, port: number, clientId: string, onConnect: () => void): void {
+  public connect(host: string, port: number, clientId: string, onConnect: () => void): void {
     this.client = new Client(host, port, clientId);
 
     this.client.onConnectionLost = this.onConnectionLost.bind(this);
@@ -88,7 +88,7 @@ export class MqttService {
   onMessageArrived(message: Message): void {
     console.log('Message arrived:', message.payloadString);
     // Emit the message to subscribers
-    this.messageArrived$.next({ topic: message.destinationName, payload: message.payloadString });
+    this.messageArrived$.next({topic: message.destinationName, payload: message.payloadString});
   }
 
   // Handle connection loss
@@ -112,7 +112,7 @@ export class MqttService {
       console.log(`Attempting to reconnect in ${delay} ms...`);
 
       setTimeout(() => {
-        this.connectClient(this.client.host, this.client.port, this.client.clientId, () => {
+        this.connect(this.client.host, this.client.port, this.client.clientId, () => {
           console.log('Reconnected successfully.');
         });
       }, delay);

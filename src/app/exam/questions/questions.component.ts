@@ -12,7 +12,7 @@ import {faCheck, faClipboard} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent {
-  @Input() student: string[] = [];
+  @Input() student: string = '';
 
   // Track copied state for each topic
   copiedState: { [key: string]: boolean } = {};
@@ -22,7 +22,7 @@ export class QuestionsComponent {
   }
 
   getStudentId(): string {
-    return this.student && this.student.length > 0 ? this.student[0] : 'student_id';
+    return this.student && this.student.length > 0 ? this.student : 'student_id';
   }
 
   copyToClipboard(topic: string): void {

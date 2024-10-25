@@ -15,7 +15,7 @@ import {NgClass, NgIf} from '@angular/common';
   styleUrl: './connection.component.css'
 })
 export class MqttConnectionComponent implements OnInit {
-  host: string = 'mqtt-dashboard.com';
+  host: string = 'phycom.it.kmitl.ac.th';
   port: number = 8884;
   clientId: string = 'client_' + Math.random().toString(16).substr(2, 8);
   username: string = '';
@@ -47,7 +47,7 @@ export class MqttConnectionComponent implements OnInit {
 
   connect(): void {
     const clientId = this.clientId || 'client_' + Math.random().toString(16).substr(2, 8);
-    this.mqttService.connectClient(this.host, this.port, clientId, () => {
+    this.mqttService.connect(this.host, this.port, clientId, () => {
       // console.log('Connected successfully');
       // this.mqttService.subscribeToTopic(this.lwTopic); // Subscribe to Last-Will Topic if set
       this.showSuccessBorder = true;

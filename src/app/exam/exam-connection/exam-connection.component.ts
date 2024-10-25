@@ -1,11 +1,11 @@
 import {interval, Subscription} from 'rxjs';
-import {MqttService} from '../../mqtt.service';
 import {Title} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {StudentNodeComponent} from "../student-node/student-node.component";
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from "../questions/questions.component";
 import {FormsModule} from "@angular/forms";
+import {ExamMqttService} from '../exam-mqtt.service';
 
 @Component({
   selector: 'exam-connection',
@@ -42,7 +42,7 @@ export class ExamConnectionComponent {
   public showSuccessBorder: boolean = false;
 
 
-  constructor(protected mqttService: MqttService, private titleService: Title) {
+  constructor(protected mqttService: ExamMqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
   }
 
@@ -65,19 +65,20 @@ export class ExamConnectionComponent {
     console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
   }
 
-  sendMessage() {
-    this.mqttService.sendMessage('World', 'Hello again');
-  }
-
   // Start the temperature generator
   startGenerator(): void {
     if (this.temp_generator) return;
+    if (!this.studentId || this.studentId.trim() === '') {
+      alert('Student ID is required');
+      return;
+    }
 
     this.client_ID = 'Server_' + new Date().getTime();
     console.log('Connect with client ID', this.client_ID);
 
     // Use the bound studentId
-    this.mqttService.connectClient(this.host, +this.port, this.client_ID, () => this.startTempGenInterval());
+    this.mqttService.connect(this.host, +this.port, this.client_ID, () => this.startTempGenInterval());
+    this.mqttService.student_id = this.studentId;
     this.showSuccessBorder = true;
     setTimeout(() => {
       this.showSuccessBorder = false; // Hide the border
@@ -88,6 +89,7 @@ export class ExamConnectionComponent {
     if (this.temp_generator) return;
 
     let current_temp = 10;
+    this.mqttService.venusTemp = current_temp;
 
     // Subscribe to student's topics
     const topics = [`${this.studentId}/light`, `${this.studentId}/food`, `${this.studentId}/temp`];
@@ -105,21 +107,12 @@ export class ExamConnectionComponent {
       } else if (current_temp <= this.min_temp) {
         this.generator = 3;
       }
-      this.current_temp = current_temp;
+      this.mqttService.venusTemp = current_temp;
 
       // Send temperature message
       const messagePayload = `${current_temp}`;
       this.mqttService.sendMessage(`${this.studentId}/venus`, messagePayload);
-
-      // Reset light, food, and temperature
-      this.resetValues();
     });
-  }
-
-  resetValues(): void {
-    this.mqttService.sendMessage('reset_light', '0');
-    this.mqttService.sendMessage('reset_food', 'off');
-    this.mqttService.sendMessage('reset_temp', '0');
   }
 
   stopGenerator(): void {
