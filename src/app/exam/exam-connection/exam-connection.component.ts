@@ -1,44 +1,48 @@
 import {interval, Subscription} from 'rxjs';
-import {MqttService} from '../mqtt.service';
+import {MqttService} from '../../mqtt.service';
 import {Title} from '@angular/platform-browser';
 import {Component} from '@angular/core';
-import {StudentNodeComponent} from './student-node/student-node.component';
-import {NgForOf, NgIf} from '@angular/common';
-import {QuestionsComponent} from './questions/questions.component';
-import {ExamConnectionComponent} from './exam-connection/exam-connection.component';
+import {StudentNodeComponent} from "../student-node/student-node.component";
+import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {QuestionsComponent} from "../questions/questions.component";
+import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-exam',
-  templateUrl: './exam.component.html',
+  selector: 'exam-connection',
+  templateUrl: './exam-connection.component.html',
   standalone: true,
   imports: [
     StudentNodeComponent,
     NgForOf,
     NgIf,
     QuestionsComponent,
-    ExamConnectionComponent
+    FormsModule,
+    NgClass
   ],
-  styleUrls: [
-    './exam.component.css',
-    '../mqtt/connection/connection.component.css'
-  ]
+  styleUrls: ['./exam-connection.component.css', '../../mqtt/connection/connection.component.css']
 })
-export class ExamComponent {
-  public STUDENTS: string[] = [];
+export class ExamConnectionComponent {
   public current_temp: number = 0;
   public temp_generator: Subscription | null = null;
   protected page_title: string = "PC 2023 Mock Exam";
-  private client_ID: string = '';
   private max_temp: number = 50;
   private min_temp: number = 10;
   private generator: number = 3;
+
+  public studentId: string = '';
+  public host: string = 'phycom.it.kmitl.ac.th';
+  public port: string = '8884';
+  public client_ID: string = 'client_' + Math.random().toString(16).substr(2, 8);
 
   // Variables to store message data
   public MESSAGE_LIGHT: string = '0';
   public MESSAGE_FOOD: string = 'off';
   public MESSAGE_TEMP: string = '20';
 
-  constructor(private mqttService: MqttService, private titleService: Title) {
+  public showSuccessBorder: boolean = false;
+
+
+  constructor(protected mqttService: MqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
   }
 
@@ -67,14 +71,17 @@ export class ExamComponent {
 
   // Start the temperature generator
   startGenerator(): void {
-    const studentId = (document.getElementById('student-id') as HTMLInputElement).value;
-    this.STUDENTS = [studentId];
     if (this.temp_generator) return;
 
     this.client_ID = 'Server_' + new Date().getTime();
     console.log('Connect with client ID', this.client_ID);
 
-    this.mqttService.connectClient("broker.hivemq.com", 8884, this.client_ID, () => this.startTempGenInterval());
+    // Use the bound studentId
+    this.mqttService.connectClient(this.host, +this.port, this.client_ID, () => this.startTempGenInterval());
+    this.showSuccessBorder = true;
+    setTimeout(() => {
+      this.showSuccessBorder = false; // Hide the border
+    }, 2000); // 2000 milliseconds = 2 seconds
   }
 
   startTempGenInterval(): void {
@@ -83,13 +90,11 @@ export class ExamComponent {
     let current_temp = 10;
 
     // Subscribe to student's topics
-    this.STUDENTS.forEach((student) => {
-      const topics = [`${student}/light`, `${student}/food`, `${student}/temp`];
+    const topics = [`${this.studentId}/light`, `${this.studentId}/food`, `${this.studentId}/temp`];
 
-      topics.forEach((topic) => {
-        this.mqttService.subscribeToTopic(topic);
-        console.log('Subscribed to topic:', topic);  // Log each topic
-      });
+    topics.forEach((topic) => {
+      this.mqttService.subscribeToTopic(topic);
+      console.log('Subscribed to topic:', topic);  // Log each topic
     });
 
     // Start generating temperature every 3 seconds
@@ -104,8 +109,7 @@ export class ExamComponent {
 
       // Send temperature message
       const messagePayload = `${current_temp}`;
-      const studentId = (document.getElementById('student-id') as HTMLInputElement).value;
-      this.mqttService.sendMessage(`${studentId}/venus`, messagePayload);
+      this.mqttService.sendMessage(`${this.studentId}/venus`, messagePayload);
 
       // Reset light, food, and temperature
       this.resetValues();
@@ -123,14 +127,12 @@ export class ExamComponent {
       this.temp_generator.unsubscribe();
       this.temp_generator = null;
     }
+    this.mqttService.disconnect();
   }
 
-  handleEnter(input: HTMLInputElement) {
-    if (this.temp_generator) {
-      this.stopGenerator();
-    } else {
+  handleSubmit() {
+    if (this.studentId) {
       this.startGenerator();
     }
-    input.blur();  // Deselect the input field
   }
 }
