@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MqttService} from '../../mqtt.service';
 import {FormsModule} from '@angular/forms';
 import {NgClass, NgIf} from '@angular/common';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-connection',
@@ -27,10 +28,16 @@ export class MqttConnectionComponent implements OnInit {
   lwQos: number = 0;
   lwRetain: boolean = false;
   lwMessage: string = '';
-
   showSuccessBorder = false;
+  isConnecting: boolean = false;
+  private connectingSubscription!: Subscription;
 
   constructor(protected mqttService: MqttService) {
+    this.connectingSubscription = this.mqttService.isConnecting$.subscribe(
+      (connecting) => {
+        this.isConnecting = connecting;
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -58,6 +65,11 @@ export class MqttConnectionComponent implements OnInit {
   }
 
   disconnect(): void {
+    this.mqttService.disconnect();
+  }
+
+  ngOnDestroy(): void {
+    this.connectingSubscription.unsubscribe();
     this.mqttService.disconnect();
   }
 

@@ -1,16 +1,52 @@
 <div class="flex flex-col w-full" id="messagesPanel">
   <div class="flex justify-between items-center mb-2">
-    <h3 class="font-semibold text-2xl">Messages</h3>
+    <h3 class="font-semibold text-3xl flex items-center gap-x-2">
+      <span
+        class="material-icons-outlined size-8 overflow-hidden select-none pointer-events-none flex items-center justify-center"
+        style="font-size: 24px"
+      >
+        mail
+      </span>
+      <span>Messages</span>
+    </h3>
   </div>
 
-  <div class="" id="messagesMain">
-    <ul class="space-y-2">
-      <li *ngFor="let message of messages.reverse()"
-          class="max-w-full p-2 bg-white/70 dark:bg-gray-800/70 rounded-sm border border-gray-300 dark:border-gray-600 overflow-hidden backdrop-blur-xl">
+  <div
+    class="h-[480px] max-h-[480px] rounded-md bg-white/70 dark:bg-gray-800/70 overflow-auto p-4"
+    id="messagesMain"
+  >
+    <ul class="space-y-4">
+      <li
+        *ngFor="let message of messages.reverse(); let i = index"
+        class="max-w-full p-2 bg-white/70 dark:bg-gray-800/70 rounded-md border border-gray-300 dark:border-gray-600 overflow-hidden backdrop-blur-xl message-enter"
+      >
         <div class="truncate">
-          <p class="font-light text-sm">{{ message.topic }}</p>  <!-- Displaying the topic -->
-          <p class="text-lg ml-3 whitespace-normal max-w-full break-words"> {{ message.payload }}</p>
-          <!-- Message content -->
+          <div class="flex flex-row items-center justify-between w-full">
+            <span class="flex flex-row gap-x-1 items-center">
+              <span class="font-light text-sm">{{ message.topic }}</span>
+              <span
+                class="px-2 font-light text-gray-500 text-xs rounded-md bg-white dark:bg-gray-800"
+                >Msg Order: {{ messages.length - i }}</span
+              >
+            </span>
+            <span class="flex items-center gap-x-2">
+              <span
+                class="material-icons-outlined size-4 overflow-hidden select-none pointer-events-none flex items-center justify-center"
+                style="font-size: 16px"
+              >
+                schedule
+              </span>
+              <span class="font-light text-sm">{{
+                message.arrival.toLocaleString()
+              }}</span>
+            </span>
+          </div>
+          <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700" />
+          <p
+            class="text-lg whitespace-normal max-w-full break-words min-h-[28px]"
+          >
+            {{ message.payload }}
+          </p>
         </div>
       </li>
     </ul>

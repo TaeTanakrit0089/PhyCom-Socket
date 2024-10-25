@@ -23,6 +23,8 @@ export class StudentNodeComponent implements OnInit {
 
   faLightbulb = faLightbulb;
   faPaw = faPaw;
+  isNaN: Function = Number.isNaN;
+
 
   constructor() {
   }

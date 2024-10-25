@@ -7,6 +7,7 @@ import {QuestionsComponent} from "../questions/questions.component";
 import {FormsModule} from "@angular/forms";
 import {ExamMqttService} from '../exam-mqtt.service';
 
+
 @Component({
   selector: 'exam-connection',
   templateUrl: './exam-connection.component.html',
@@ -40,10 +41,17 @@ export class ExamConnectionComponent {
   public MESSAGE_TEMP: string = '20';
 
   public showSuccessBorder: boolean = false;
+  private connectingSubscription!: Subscription;
+  isConnecting: boolean = false;
 
 
   constructor(protected mqttService: ExamMqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
+    this.connectingSubscription = this.mqttService.isConnecting$.subscribe(
+      (connecting) => {
+        this.isConnecting = connecting;
+      }
+    );
   }
 
   ngOnInit() {

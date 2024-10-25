@@ -1,12 +1,20 @@
 <div class="flex flex-col w-full" id="subscribePanel">
   <div class="flex justify-between items-center mb-2">
-    <h3 class="font-semibold text-2xl">Subscribe</h3>
+    <h3 class="font-semibold text-3xl flex items-center gap-x-2">
+      <span
+        class="material-icons-outlined size-8 overflow-hidden select-none pointer-events-none flex items-center justify-center"
+        style="font-size: 24px"
+      >
+        playlist_add
+      </span>
+      <span>Subscription</span>
+    </h3>
   </div>
 
   <div class="w-full bg-white/70 dark:bg-gray-800/70 rounded-lg shadow drop-shadow-xl sm:px-8 px-6 py-6 backdrop-blur-xl"
        id="subscribeMain">
     <form class="space-y-3">
-      <div class="flex flex-wrap gap-2">
+      <div class="flex flex-col lg:flex-row gap-2">
         <div class="flex-1 min-w-[200px]">
           <label class="block font-medium">Topic</label>
           <input [(ngModel)]="topic" class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
@@ -16,7 +24,7 @@
 
         <div class="flex-1 min-w-[80px]">
           <label class="block font-medium">QoS</label>
-          <select [(ngModel)]="qos" class="w-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
+          <select [(ngModel)]="qos" class="w-full border cursor-pointer border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
                   name="qos">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -24,9 +32,21 @@
           </select>
         </div>
 
-        <div class="flex-1 min-w-[100px]">
-          <button (click)="subscribeTopic()" [disabled]="!mqttService.isConnected"
-                  class="mt-7 px-3 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded" type="button">Subscribe
+        <div class="flex items-end lg:w-32 md:pt-0 pt-4">
+          <button (click)="subscribeTopic()" [disabled]="!isConnected"
+                  [title]="isConnected ? 'Subscribe to ' + topic : 'Connect to MQTT broker to subscribe'"
+                  [class]="isConnected ? '' : 'cursor-not-allowed'"
+
+                  class="h-[42px] w-full px-3 py-1 text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:bg-gray-600 rounded" type="button">
+                  
+                  <span class="flex items-center gap-x-2 w-full justify-center">
+                    <span
+                      class="material-icons-outlined size-6 overflow-hidden select-none pointer-events-none flex items-center justify-center"
+                      style="font-size: 20px"
+                    >
+                      add </span
+                    ><span>Subscribe</span></span
+                  >
           </button>
         </div>
       </div>
@@ -34,14 +54,15 @@
 
     <!-- List of Subscribed Topics -->
     <div class="mt-4">
-      <h4 class="font-semibold text-lg">Subscribed Topics:</h4>
-      <div class="mt-2 max-w-fit overflow-x-auto"> <!-- Set a fixed width, e.g., 300px -->
-        <ul class="flex space-x-4">
-          <li (click)="unsubscribeTopic(i)"
+      <h4 class="font-semibold text-lg">Subscribed Topics</h4>
+      <div class="mt-2 max-w-fit min-h-[56px]"> <!-- Set a fixed width, e.g., 300px -->
+        <ul id="scrollbar" class="flex flex-nowrap max-w-screen gap-x-2 overflow-auto pb-1">
+          <li
               *ngFor="let subscribedTopic of subscribedTopics; let i = index"
               [ngStyle]="{ 'background-color': subscribedTopic.bgColor }"
-              class="text-black font-bold p-2 bg-gray-100 dark:bg-gray-700 rounded-md border border-gray-300 dark:border-gray-600 cursor-pointer">
-            {{ subscribedTopic.topic }}
+              class="text-black font-bold p-2 bg-gray-100 dark:bg-gray-700 rounded-md border border-gray-300 dark:border-gray-600 flex flex-row items-center gap-x-2 flex-shrink-0 subscription-enter">
+            <span>{{ subscribedTopic.topic }}</span>
+            <span (click)="unsubscribeTopic(i)" [title]="'Unsubscribe from ' + subscribedTopic.topic" class="cursor-pointer material-icons-outlined hover:underline text-gray-600" style="font-size: 16px">close</span>
           </li>
         </ul>
       </div>

@@ -1,11 +1,11 @@
 <div class="flex flex-col md:flex-row justify-center">
-  <div class="flex-grow p-6 max-w-[1280px] mt-7">
+  <div class="flex-grow 2xl:p-0 p-6 max-w-screen-2xl">
     <div class="flex flex-col w-full">
       <!-- Connection Component -->
       <app-connection class="mb-6"></app-connection>
 
       <!-- Row for Publish and Subscription Components -->
-      <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 mb-6">
+      <div class="grid md:grid-cols-2 grid-cols-1 gap-x-4 mb-6">
         <app-publish class="flex-1 mb-6 md:mb-0"></app-publish>
         <app-subscription class="flex-1 mb-6 md:mb-0"></app-subscription>
       </div>

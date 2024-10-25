@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ConnectionComponent} from './connection.component';
+import {MqttConnectionComponent} from './connection.component';
 
 describe('ConnectionComponent', () => {
-  let component: ConnectionComponent;
-  let fixture: ComponentFixture<ConnectionComponent>;
+  let component: MqttConnectionComponent;
+  let fixture: ComponentFixture<MqttConnectionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConnectionComponent]
+      imports: [MqttConnectionComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(ConnectionComponent);
+    fixture = TestBed.createComponent(MqttConnectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

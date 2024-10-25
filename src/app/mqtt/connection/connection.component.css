@@ -1,18 +1,44 @@
 .blinking-border {
+    transition: border-color 2s ease-in-out, box-shadow 2s ease-in-out, border 2s ease-in-out ; /* Smooth transition for color and shadow */
     border-color: rgba(255, 0, 0, 0.8); /* Start with a solid red color */
+    box-shadow: 0 0 20px rgba(255, 247, 247, 0.8); /* Add a drop shadow to make it more visible */
     animation: blink-animation 5.5s ease-in-out infinite, border-color 2s ease-in-out; /* Slower animation */
+}
+
+.blinking-connecting-border {
+    border-color: rgba(255, 174, 0, 0.8); /* Start with a solid red color */
+    box-shadow: 0 0 20px rgba(255, 247, 247, 0.8); /* Add a drop shadow to make it more visible */
+    animation: blink-connecting-animation 1.5s ease-in-out infinite, border-color 2s ease-in-out; /* Slower animation */
 }
 
 @keyframes blink-animation {
     0%, 100% {
         border-color: rgba(255, 0, 0, 0.8); /* Keep the border color red at the start and end */
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); /* Add a drop shadow to make it more visible */
+
     }
     50% {
         border-color: rgba(255, 0, 0, 0.3); /* More subtle red in the middle */
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* Add a drop shadow to make it more visible */
+
+    }
+}
+
+@keyframes blink-connecting-animation {
+    0%, 100% {
+        border-color: rgba(255, 174, 0, 0.8); /* Keep the border color red at the start and end */
+        box-shadow: 0 0 20px rgba(255, 174, 0, 0.8); /* Add a drop shadow to make it more visible */
+
+    }
+    50% {
+        border-color: rgba(255, 123, 0, 0.3); /* More subtle red in the middle */
+        box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); /* Add a drop shadow to make it more visible */
+
     }
 }
 
 .success-border {
+    transition-property: border-color, box-shadow; /* Animate the border color and box shadow */
     border-color: green; /* Final color when connected */
     transition: border-color 2s ease-in-out, border-width 0.5s ease-in-out; /* Smooth transition for color and width */
 }

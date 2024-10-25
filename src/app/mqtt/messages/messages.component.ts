@@ -5,6 +5,7 @@ import {DatePipe, NgForOf, SlicePipe} from '@angular/common';
 interface Message {
   topic: string;
   payload: string;
+  arrival: Date;
 }
 
 @Component({
@@ -25,7 +26,8 @@ export class MessagesComponent {
     this.mqttService.onMessageArrived = (message: any) => {
       this.messages.push({
         topic: message.topic,  // Assuming message has a topic property
-        payload: message.payloadString
+        payload: message.payloadString,
+        arrival: new Date()
       });
       console.log('Message arrived:', message.topic, message.payloadString);
     };

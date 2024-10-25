@@ -20,6 +20,7 @@
     "@angular/router": "^18.2.0",
     "@fortawesome/angular-fontawesome": "^0.15.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "material-icons": "^1.13.12",
     "paho-mqtt": "^1.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
