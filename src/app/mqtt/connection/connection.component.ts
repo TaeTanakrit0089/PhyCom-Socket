@@ -45,11 +45,13 @@ export class MqttConnectionComponent implements OnInit {
   }
 
   prefill(): void {
-    const params = new URLSearchParams(window.location.search);
-    this.username = params.get('username') || '';
-    this.host = params.get('host') || this.host;
-    this.port = Number(params.get('port')) || this.port;
-    this.ssl = params.get('ssl') !== null; // Adjust based on your logic
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      this.username = params.get('username') || '';
+      this.host = params.get('host') || this.host;
+      this.port = Number(params.get('port')) || this.port;
+      this.ssl = params.get('ssl') !== null; // Adjust based on your logic
+    }
   }
 
   connect(): void {

@@ -21,6 +21,7 @@ interface Message {
 })
 export class MessagesComponent {
   messages: Message[] = [];
+  reversedMessages: Message[] = []; // The reversed array of messages
 
   constructor(private mqttService: MqttService) {
     this.mqttService.onMessageArrived = (message: any) => {
@@ -30,6 +31,7 @@ export class MessagesComponent {
         arrival: new Date()
       });
       console.log('Message arrived:', message.topic, message.payloadString);
+      this.reversedMessages = [...this.messages].reverse();
     };
   }
 }

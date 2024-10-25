@@ -17,7 +17,7 @@
   >
     <ul class="space-y-4">
       <li
-        *ngFor="let message of messages.reverse(); let i = index"
+        *ngFor="let message of reversedMessages; let i = index"
         class="max-w-full p-2 bg-white/70 dark:bg-gray-800/70 rounded-md border border-gray-300 dark:border-gray-600 overflow-hidden backdrop-blur-xl message-enter"
       >
         <div class="truncate">
@@ -26,7 +26,7 @@
               <span class="font-light text-sm">{{ message.topic }}</span>
               <span
                 class="px-2 font-light text-gray-500 text-xs rounded-md bg-white dark:bg-gray-800"
-                >Msg Order: {{ messages.length - i }}</span
+                >Msg Order: {{ reversedMessages.length - i }}</span
               >
             </span>
             <span class="flex items-center gap-x-2">
