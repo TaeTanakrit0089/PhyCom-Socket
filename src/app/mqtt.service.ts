@@ -6,37 +6,85 @@ import {Subject} from 'rxjs';
   providedIn: 'root',
 })
 export class MqttService {
-  client!: Client;
-  isConnected = false;
-  reconnectAttempts = 0; // Track the number of reconnection attempts
-  maxReconnectAttempts = 5; // Maximum number of reconnection attempts
-  reconnectDelay = 1000; // Initial delay for reconnection in milliseconds
+  private _client!: Client;
+  private _isConnected = false;
+  private _reconnectAttempts = 0; // Track the number of reconnection attempts
+  private _maxReconnectAttempts = 5; // Maximum number of reconnection attempts
+  private _reconnectDelay = 1000; // Initial delay for reconnection in milliseconds
 
-  // Subject to broadcast messages
-  public messageArrived$ = new Subject<{ topic: string, payload: string }>();
+  get client(): Paho.MQTT.Client {
+    return this._client;
+  }
+
+  set client(value: Paho.MQTT.Client) {
+    this._client = value;
+  }
+
+  get isConnected(): boolean {
+    return this._isConnected;
+  }
+
+  set isConnected(value: boolean) {
+    this._isConnected = value;
+  }
+
+  get reconnectAttempts(): number {
+    return this._reconnectAttempts;
+  }
+
+  set reconnectAttempts(value: number) {
+    this._reconnectAttempts = value;
+  }
+
+  get maxReconnectAttempts(): number {
+    return this._maxReconnectAttempts;
+  }
+
+  set maxReconnectAttempts(value: number) {
+    this._maxReconnectAttempts = value;
+  }
+
+  get reconnectDelay(): number {
+    return this._reconnectDelay;
+  }
+
+  set reconnectDelay(value: number) {
+    this._reconnectDelay = value;
+  }
+
+  get messageArrived$(): Subject<{ topic: string; payload: string }> {
+    return this._messageArrived$;
+  }
+
+  set messageArrived$(value: Subject<{ topic: string; payload: string }>) {
+    this._messageArrived$ = value;
+  }
+
+// Subject to broadcast messages
+  private _messageArrived$ = new Subject<{ topic: string, payload: string }>();
 
   constructor() {
   }
 
   // Connect the MQTT client
   public connect(host: string, port: number, clientId: string, onConnect: () => void): void {
-    this.client = new Client(host, port, clientId);
+    this._client = new Client(host, port, clientId);
 
-    this.client.onConnectionLost = this.onConnectionLost.bind(this);
-    this.client.onMessageArrived = this.onMessageArrived.bind(this);
+    this._client.onConnectionLost = this.onConnectionLost.bind(this);
+    this._client.onMessageArrived = this.onMessageArrived.bind(this);
 
     const connectionTimeout = setTimeout(() => {
       console.error('Connection attempt timed out.');
       alert('Connection attempt timed out after 5 seconds.');
-      this.client.disconnect(); // Optionally disconnect if the connection is not established
+      this._client.disconnect(); // Optionally disconnect if the connection is not established
     }, 5000);
 
-    this.client.connect({
+    this._client.connect({
       onSuccess: () => {
         clearTimeout(connectionTimeout);
-        this.reconnectAttempts = 0;
+        this._reconnectAttempts = 0;
         onConnect();
-        this.isConnected = true;
+        this._isConnected = true;
         console.log(`Connected to ${host}:${port} successfully.`);
       },
       onFailure: (error) => {
@@ -50,16 +98,16 @@ export class MqttService {
 
   // Subscribe to a topic
   public subscribeToTopic(topic: string): void {
-    if (this.client) {
-      this.client.subscribe(topic);
+    if (this._client) {
+      this._client.subscribe(topic);
       console.log(`Subscribed to topic: ${topic}`);
     }
   }
 
   // Unsubscribe from a topic
   public unsubscribeFromTopic(topicToUnsubscribe: string): void {
-    if (this.client) {
-      this.client.unsubscribe(topicToUnsubscribe);
+    if (this._client) {
+      this._client.unsubscribe(topicToUnsubscribe);
       console.log(`Unsubscribed from topic: ${topicToUnsubscribe}`);
     } else {
       console.warn('No client connected to unsubscribe from the topic.');
@@ -70,15 +118,15 @@ export class MqttService {
   public sendMessage(topic: string, payload: string): void {
     const message = new Message(payload);
     message.destinationName = topic;
-    this.client.send(message);
+    this._client.send(message);
     console.log(`Message sent to ${topic}: ${payload}`);
   }
 
   // Disconnect the MQTT client
   public disconnect(): void {
-    if (this.client) {
-      this.client.disconnect();
-      this.isConnected = false;
+    if (this._client) {
+      this._client.disconnect();
+      this._isConnected = false;
       console.log('Disconnected from MQTT broker');
     } else {
       console.log('No client to disconnect');
@@ -88,13 +136,13 @@ export class MqttService {
   onMessageArrived(message: Message): void {
     console.log('Message arrived:', message.payloadString);
     // Emit the message to subscribers
-    this.messageArrived$.next({topic: message.destinationName, payload: message.payloadString});
+    this._messageArrived$.next({topic: message.destinationName, payload: message.payloadString});
   }
 
   // Handle connection loss
   private onConnectionLost(responseObject: any): void {
     if (responseObject.errorCode !== 0) {
-      this.isConnected = false;
+      this._isConnected = false;
       console.log('Connection lost:', responseObject.errorMessage);
 
       // Alert the user and refresh the page
@@ -105,14 +153,14 @@ export class MqttService {
 
   // Attempt to reconnect with exponential backoff
   private reconnect(): void {
-    if (this.reconnectAttempts < this.maxReconnectAttempts) {
-      this.reconnectAttempts++;
-      const delay = this.reconnectDelay * this.reconnectAttempts; // Increase the delay for each attempt
+    if (this._reconnectAttempts < this._maxReconnectAttempts) {
+      this._reconnectAttempts++;
+      const delay = this._reconnectDelay * this._reconnectAttempts; // Increase the delay for each attempt
 
       console.log(`Attempting to reconnect in ${delay} ms...`);
 
       setTimeout(() => {
-        this.connect(this.client.host, this.client.port, this.client.clientId, () => {
+        this.connect(this._client.host, this._client.port, this._client.clientId, () => {
           console.log('Reconnected successfully.');
         });
       }, delay);
