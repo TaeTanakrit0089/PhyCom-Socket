@@ -5,12 +5,12 @@ import {StudentNodeComponent} from './student-node/student-node.component';
 import {NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from './questions/questions.component';
 import {ExamConnectionComponent} from './exam-connection/exam-connection.component';
-import {ExamMqttService} from './exam-mqtt.service';
+import {ExamMqttService} from '../exam-mqtt.service';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-exam',
-  templateUrl: './exam.component.html',
+  selector: 'app-exam66',
+  templateUrl: './exam66.component.html',
   standalone: true,
   imports: [
     StudentNodeComponent,
@@ -21,11 +21,11 @@ import {RouterLink} from '@angular/router';
     RouterLink
   ],
   styleUrls: [
-    './exam.component.css',
-    '../mqtt/connection/connection.component.css'
+    './exam66.component.css',
+    '../../mqtt/connection/connection.component.css'
   ]
 })
-export class ExamComponent {
+export class Exam66Component {
   public STUDENTS: string[] = [];
   public temp_generator: Subscription | null = null;
   protected page_title: string = "PC 2023 Mock Exam";

@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
-import {ExamComponent} from './exam/exam.component';
-import {StudentNodeComponent} from './exam/student-node/student-node.component';
+import {Exam66Component} from './exam/exam66/exam66.component';
+import {StudentNodeComponent} from './exam/exam66/student-node/student-node.component';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import {StudentNodeComponent} from './exam/student-node/student-node.component';
     BrowserModule,
     FormsModule,
     AppComponent,
-    ExamComponent,
+    Exam66Component,
     StudentNodeComponent
   ],
   providers: [],

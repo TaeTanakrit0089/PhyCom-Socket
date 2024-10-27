@@ -5,11 +5,11 @@ import {StudentNodeComponent} from "../student-node/student-node.component";
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from "../questions/questions.component";
 import {FormsModule} from "@angular/forms";
-import {ExamMqttService} from '../exam-mqtt.service';
+import {ExamMqttService} from '../../exam-mqtt.service';
 
 
 @Component({
-  selector: 'exam-connection',
+  selector: 'exam66-connection',
   templateUrl: './exam-connection.component.html',
   standalone: true,
   imports: [
@@ -20,7 +20,7 @@ import {ExamMqttService} from '../exam-mqtt.service';
     FormsModule,
     NgClass
   ],
-  styleUrls: ['./exam-connection.component.css', '../../mqtt/connection/connection.component.css']
+  styleUrls: ['./exam-connection.component.css', '../../../mqtt/connection/connection.component.css']
 })
 export class ExamConnectionComponent {
   public current_temp: number = 0;

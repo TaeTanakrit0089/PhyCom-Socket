@@ -168,7 +168,7 @@ export class MqttService {
 
       // Alert the user and refresh the page
       alert('Connection to the MQTT broker was lost. Retrying...');
-      // this.reconnect();   
+      // this.reconnect();
       window.location.reload(); // Refresh the page
     }
   }

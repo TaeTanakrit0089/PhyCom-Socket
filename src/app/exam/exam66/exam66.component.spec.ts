@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ExamComponent} from './exam.component';
+import {Exam66Component} from './exam66.component';
 
 describe('HiveComponent', () => {
-  let component: ExamComponent;
-  let fixture: ComponentFixture<ExamComponent>;
+  let component: Exam66Component;
+  let fixture: ComponentFixture<Exam66Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExamComponent]
+      imports: [Exam66Component]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(ExamComponent);
+    fixture = TestBed.createComponent(Exam66Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
