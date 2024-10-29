@@ -1,8 +1,8 @@
 import {Component, Inject, Input, numberAttribute, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser, NgStyle} from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faLightbulb, faPaw } from '@fortawesome/free-solid-svg-icons';
-import { EmailSpinService } from '../emaispin.service';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {faLightbulb, faPaw} from '@fortawesome/free-solid-svg-icons';
+import {EmailSpinService} from '../emaispin.service';
 
 @Component({
   selector: 'app-student-node',
@@ -18,20 +18,21 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   private _temp: number = 20;
   private _emailspinLocation: string = 'assets/exam67/emailspin/';
   private _intervalId: any;
-  private _spinInterval: number = 0; // Change this value to set the interval (0 = no spin)
+  private _spinSpeed: number = 1000;
 
   faLightbulb = faLightbulb;
   faPaw = faPaw;
   isNaN: Function = Number.isNaN;
 
-  constructor(private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {
+  }
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId) && this._spinInterval > 0) {
-      // Start the spin and set the interval to update the frame if the interval is greater than 0
+    if (isPlatformBrowser(this.platformId) && this._spinSpeed > 0) {
+      const intervalDelay = this.calculateInterval(this._spinSpeed);
       this._intervalId = setInterval(() => {
         this.emailSpinService.incrementFrame();
-      }, this._spinInterval);
+      }, intervalDelay);
     }
   }
 
@@ -57,7 +58,7 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   }
 
   // Getter and setter for light
-  @Input({ transform: numberAttribute })
+  @Input({transform: numberAttribute})
   get light(): number {
     return this._light;
   }
@@ -77,7 +78,7 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   }
 
   // Getter and setter for temp
-  @Input({ transform: numberAttribute })
+  @Input({transform: numberAttribute})
   get temp(): number {
     return this._temp;
   }
@@ -86,13 +87,37 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
     this._temp = value;
   }
 
-  // Getter and setter for spin interval
+  // Getter and setter for spin speed (0 to 1024)
   @Input()
-  get spinInterval(): number {
-    return this._spinInterval;
+  get spinSpeed(): number {
+    return this._spinSpeed;
   }
 
-  set spinInterval(value: number) {
-    this._spinInterval = value;
+  set spinSpeed(value: number) {
+    // Clamp value between 0 and 1024
+    this._spinSpeed = Math.max(0, Math.min(value, 1024));
+    // Restart spin if it's already running
+    if (this._intervalId) {
+      clearInterval(this._intervalId);
+      if (this._spinSpeed > 0) {
+        const intervalDelay = this.calculateInterval(this._spinSpeed);
+        this._intervalId = setInterval(() => {
+          this.emailSpinService.incrementFrame();
+        }, intervalDelay);
+      }
+    }
   }
+
+  private calculateInterval(speed: number): number {
+    // Define minimum and maximum intervals in milliseconds
+    const minInterval = 15;  // Minimum interval when speed is at maximum (1024)
+    const maxInterval = 150;  // Maximum interval when speed is at minimum (1)
+
+    if (speed === 0) return Infinity; // No spinning
+
+    // Calculate the interval based on the speed
+    const interval = maxInterval - ((speed - 1) * (maxInterval - minInterval) / 1023);
+    return Math.max(interval, minInterval); // Ensure it doesn't go below the minimum
+  }
+
 }
