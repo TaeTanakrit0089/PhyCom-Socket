@@ -1,0 +1,110 @@
+<div class="container mx-auto p-4 sm:p-6">
+  <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 dark:text-white text-center">Questions</h1>
+
+  <div class="flex flex-col gap-4 sm:gap-6 xl:flex-row md:gap-8">
+    <!-- Publish Section -->
+    <div class="bg-white dark:bg-gray-800 bg-opacity-80 backdrop-blur-lg shadow-lg rounded-lg p-4 sm:p-6 flex-1">
+      <h3 class="font-semibold text-3xl flex items-center gap-x-2 mb-2">
+        <span
+          class="material-icons-outlined size-8 overflow-hidden select-none pointer-events-none flex items-center justify-center"
+          style="font-size: 24px"
+        >
+          forward_to_inbox
+        </span>
+        <span>Publish</span>
+      </h3>
+      <table class="w-full text-left text-sm sm:text-base">
+        <thead class="border-b dark:border-gray-700">
+        <tr class="text-center">
+          <th class="px-2 sm:px-4 py-2 dark:text-white">ข้อ</th>
+          <th class="px-2 sm:px-4 py-2 dark:text-white">รายการ</th>
+          <th class="px-2 sm:px-4 py-2 dark:text-white">ส่งค่าขึ้น Message Broker</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-2 sm:px-4 py-2 dark:text-white">1</td>
+          <td class="px-2 sm:px-4 py-2 dark:text-white">อ่านค่าจาก Sensor อุณหภูมิ</td>
+          <td class="px-2 sm:px-4 py-2 dark:text-white">
+            Publish ไปที่ topic
+            <div class="flex flex-row items-center">
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/temp</code>
+              <button (click)="copyToClipboard('/temp')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-4 py-2 dark:text-white">2</td>
+          <td class="px-4 py-2 dark:text-white">อ่านค่าจาก ตัวต้านทานปรับค่าได้ แล้วแสดงค่า (0-1023)</td>
+          <td class="px-4 py-2 dark:text-white">
+            Publish ไปที่ topic
+            <div class="flex flex-row items-center mt-1">
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/light</code>
+              <button (click)="copyToClipboard('/light')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/light')" class="text-blue-500 text-sm"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-4 py-2 dark:text-white">3</td>
+          <td class="px-4 py-2 dark:text-white">อ่านค่าระยะทางจาก Ultrasonic หน่วยเป็น cm</td>
+          <td class="px-4 py-2 dark:text-white">
+            ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic
+            <div class="flex flex-row items-center">
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/food</code>
+              <button (click)="copyToClipboard('/food')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/food')" class="text-blue-500 text-sm"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Subscribe Section -->
+    <div class="bg-white dark:bg-gray-800 bg-opacity-80 backdrop-blur-lg shadow-lg rounded-lg p-4 sm:p-6 flex-1">
+      <h3 class="font-semibold text-3xl flex items-center gap-x-2 mb-2">
+        <span
+          class="material-icons-outlined size-8 overflow-hidden select-none pointer-events-none flex items-center justify-center"
+          style="font-size: 24px"
+        >
+          playlist_add
+        </span>
+        <span>Subscribe</span>
+      </h3>
+      <table class="w-full text-left text-sm sm:text-base">
+        <thead class="border-b dark:border-gray-700">
+        <tr class="text-center">
+          <th class="px-2 sm:px-4 py-2 dark:text-white">ข้อ</th>
+          <th class="px-2 sm:px-4 py-2 dark:text-white">รายการ</th>
+          <th class="px-2 sm:px-4 py-2 dark:text-white">รับค่าจาก Message Broker</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-2 sm:px-4 py-2 dark:text-white">1</td>
+          <td class="px-2 sm:px-4 py-2 dark:text-white">
+            Subscribe ค่าจาก Topic
+            <div class="flex flex-row items-center">
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/venus</code>
+              <button (click)="copyToClipboard('/venus')" class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/venus')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
+              </button>
+            </div>
+          </td>
+          <td class="px-2 sm:px-4 py-2 dark:text-white">
+            นำค่าที่รับได้ แสดงผลออกทาง Color LED ดังนี้<br>
+            หากค่าตั้งแต่ 36 - 50 ให้ LED เป็นสีแดง<br>
+            หากค่าตั้งแต่ 26 - 35 ให้ LED เป็นสีฟ้า<br>
+            หากค่าตั้งแต่ 10 - 25 ให้ LED เป็นสีเขียว
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

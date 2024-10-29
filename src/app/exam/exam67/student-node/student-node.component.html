@@ -1,0 +1,26 @@
+<div
+  class="backdrop-blur-md bg-white/50 dark:bg-gray-200/30 p-6 rounded-3xl shadow-lg max-w-sm mx-auto flex flex-col items-center">
+  <div class="flex items-center justify-center mb-4">
+    <!--    <fa-icon [icon]="faLightbulb" [ngClass]="{'text-red-500': light < 512, 'text-green-500': light >= 512}"-->
+    <!--             class="text-7xl text-green-500">-->
+    <!--    </fa-icon>-->
+    <!--    <fa-icon [icon]="faPaw" [ngClass]="{-->
+    <!--        'text-green-500': open_food === 'on',-->
+    <!--        'text-red-500': open_food === 'off',-->
+    <!--        'text-white-500': open_food !== 'on' && open_food !== 'off'-->
+    <!--      }"-->
+    <!--             class="text-7xl ml-4"></fa-icon>-->
+    <img [src]="emailspinFrame" alt="emailspin">
+  </div>
+  <span [ngStyle]="{
+        'background-color': temp < 10 ? '#ffcc00' : '#5cb85c',
+        'color': '#fff',
+        'padding': '0.5rem 1rem',
+        'border-radius': '0.80rem'
+      }"
+        class="label text-center text-2xl">
+    {{ isNaN(temp) ? '???' : temp }} °C
+</span>
+
+  <strong class="mt-2">{{ student }}</strong>
+</div>
