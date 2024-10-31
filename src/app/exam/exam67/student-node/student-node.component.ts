@@ -3,6 +3,7 @@ import {isPlatformBrowser, NgStyle} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faLightbulb, faPaw} from '@fortawesome/free-solid-svg-icons';
 import {EmailSpinService} from '../emaispin.service';
+import {Exam67MqttService} from '../exam67-mqtt.service';
 
 @Component({
   selector: 'exam67-student-node',
@@ -24,12 +25,14 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   isNaN: Function = Number.isNaN;
   private _spinSpeed: number = 0;
   // 1.Sunray
-  protected _sunray_pckzy: number = 0;
-  protected _sunray_somchoon: number = 0;
-  protected _sunray_ohm: number = 0;
-  protected _sunray: number = 0;
+  public sunray_pckzy: number = 0;
+  public sunray_somchoon: number = 0;
+  public sunray_ohm: number = 0;
+  @Input() sunray!: number;
 
-  constructor(private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(protected mqttService: Exam67MqttService, private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {
+    this.sunray_pckzy = this.mqttService.sunray_pckzy
+    this.sunray = this.mqttService.sunray
   }
 
   ngOnInit() {
@@ -89,6 +92,7 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   }
 
   // Getter and setter for spin speed (0 to 1024)
+
   @Input()
   get spinSpeed(): number {
     return this._spinSpeed;

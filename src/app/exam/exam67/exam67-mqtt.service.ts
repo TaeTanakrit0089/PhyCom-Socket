@@ -14,6 +14,43 @@ export class Exam67MqttService extends MqttService {
   private _venusTemp: number = 0;
   private _student_id: string = '';
 
+  private _sunray_pckzy: number = 0;
+  private _sunray_somchoon: number = 0;
+  private _sunray_ohm: number = 0;
+  private _sunray: number = 0;
+
+  get sunray_pckzy(): number {
+    return this._sunray_pckzy;
+  }
+
+  set sunray_pckzy(value: number) {
+    this._sunray_pckzy = value;
+  }
+
+  get sunray_somchoon(): number {
+    return this._sunray_somchoon;
+  }
+
+  set sunray_somchoon(value: number) {
+    this._sunray_somchoon = value;
+  }
+
+  get sunray_ohm(): number {
+    return this._sunray_ohm;
+  }
+
+  set sunray_ohm(value: number) {
+    this._sunray_ohm = value;
+  }
+
+  get sunray(): number {
+    return this._sunray;
+  }
+
+  set sunray(value: number) {
+    this._sunray = value;
+  }
+
   get messageEmail$(): number {
     return this._messageEmail$;
   }
@@ -73,8 +110,8 @@ export class Exam67MqttService extends MqttService {
   handleIncomingMessage(topic: string, payload: string) {
     if (topic.endsWith('/emailspin')) {
       this._messageLight$ = payload;
-    } else if (topic.endsWith('/food')) {
-      this._messageFood$ = payload;
+    } else if (topic.endsWith('/sunray')) {
+      this.sunray = +payload;
     } else if (topic.endsWith('/temp')) {
       this._messageTemp$ = payload;
     }

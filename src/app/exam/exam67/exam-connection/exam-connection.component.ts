@@ -91,7 +91,7 @@ export class ExamConnectionComponent {
     this.mqttService.venusTemp = current_temp;
 
     // Subscribe to student's topics
-    const topics = [`${this.studentId}/emailspin`, `${this.studentId}/food`, `${this.studentId}/temp`];
+    const topics = [`${this.studentId}/emailspin`, `${this.studentId}/sunray`, `${this.studentId}/temp`];
 
     topics.forEach((topic) => {
       this.mqttService.subscribeToTopic(topic);
