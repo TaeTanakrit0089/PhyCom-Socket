@@ -17,13 +17,11 @@
 
       <hr class="my-4 sm:my-6 border-gray-300 dark:border-gray-700">
 
-      <ul class="flex flex-wrap justify-center mt-4">
-        <exam67-student-node
-          [spinSpeed]="mqttService.messageEmail$"
-          *ngIf="mqttService.isConnected || true"
-          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
-        </exam67-student-node>
-      </ul>
+      <exam67-student-node
+        [spinSpeed]="mqttService.messageEmail$"
+        *ngIf="mqttService.isConnected || true"
+        class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
+      </exam67-student-node>
 
       <app-questions67 [student]="mqttService.student_id"></app-questions67>
 

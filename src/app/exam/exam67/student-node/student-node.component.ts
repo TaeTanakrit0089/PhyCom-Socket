@@ -18,11 +18,16 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   private _temp: number = 20;
   private _emailspinLocation: string = 'assets/exam67/emailspin/';
   private _intervalId: any;
-  private _spinSpeed: number = 0;
 
   faLightbulb = faLightbulb;
   faPaw = faPaw;
   isNaN: Function = Number.isNaN;
+  private _spinSpeed: number = 0;
+  // 1.Sunray
+  protected _sunray_pckzy: number = 0;
+  protected _sunray_somchoon: number = 0;
+  protected _sunray_ohm: number = 0;
+  protected _sunray: number = 0;
 
   constructor(private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {
   }

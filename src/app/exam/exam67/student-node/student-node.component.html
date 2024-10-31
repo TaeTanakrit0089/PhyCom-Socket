@@ -1,27 +1,62 @@
-<div
-  class="backdrop-blur-md bg-white/50 dark:bg-gray-200/30 p-6 rounded-3xl shadow-lg max-w-sm mx-auto flex flex-col items-center">
-  <div class="flex items-center justify-center mb-4">
-    <!--    <fa-icon [icon]="faLightbulb" [ngClass]="{'text-red-500': light < 512, 'text-green-500': light >= 512}"-->
-    <!--             class="text-7xl text-green-500">-->
-    <!--    </fa-icon>-->
-    <!--    <fa-icon [icon]="faPaw" [ngClass]="{-->
-    <!--        'text-green-500': open_food === 'on',-->
-    <!--        'text-red-500': open_food === 'off',-->
-    <!--        'text-white-500': open_food !== 'on' && open_food !== 'off'-->
-    <!--      }"-->
-    <!--             class="text-7xl ml-4"></fa-icon>-->
-    <img [src]="emailspinFrame" alt="emailspin">
-  </div>
+<div class="text-left flex flex-col md:flex-row justify-between w-full gap-5">
+  <div
+    class="flex-1 backdrop-blur-md bg-white/50 dark:bg-gray-200/30 p-6 rounded-3xl shadow-lg max-w-sm mx-auto flex flex-col">
+    <h1 class="font-bold text-xl text-center">1. ข้อถ้ำ (5 คะแนน)</h1>
+    <div class="overflow-x-auto">
+      <table class="min-w-full ">
+        <thead>
+        <tr>
+          <th class="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">ชื่อถ้ำ</th>
+          <th class="py-2 px-4 border-b text-left text-gray-700 dark:text-gray-300">ข้อมูล</th>
+        </tr>
+        </thead>
+        <tbody class="text-left">
+        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600">
+          <td class="py-2 px-4 border-b text-gray-700 dark:text-gray-300">ถ้ำของคุณปิ๊ก</td>
+          <td class="py-2 px-4 border-b text-gray-700 dark:text-gray-300">{{ _sunray_pckzy }}</td>
+        </tr>
+        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600">
+          <td class="py-2 px-4 border-b text-gray-700 dark:text-gray-300">ถ้ำของคุณส้มฉุน</td>
+          <td class="py-2 px-4 border-b text-gray-700 dark:text-gray-300">{{ _sunray_somchoon }}</td>
+        </tr>
+        <tr class="hover:bg-gray-100 dark:hover:bg-gray-600">
+          <td class="py-2 px-4 border-b text-gray-700 dark:text-gray-300">ถ้ำของคุณโอม</td>
+          <td class="py-2 px-4 border-b text-gray-700 dark:text-gray-300">{{ _sunray_ohm }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <p
+        class="mt-4 text-gray-800 dark:text-gray-300 font-medium bg-white dark:bg-gray-700 rounded-xl p-3 border border-gray-200">
+        Public Message: {{ _sunray }}
+      </p>
+    </div>
 
-  <span [ngStyle]="{
+  </div>
+  <div
+    class="flex-1 backdrop-blur-md bg-white/50 dark:bg-gray-200/30 p-6 rounded-3xl shadow-lg max-w-sm mx-auto flex flex-col items-center">
+    <div class="flex items-center justify-center mb-4">
+      <!--    <fa-icon [icon]="faLightbulb" [ngClass]="{'text-red-500': light < 512, 'text-green-500': light >= 512}"-->
+      <!--             class="text-7xl text-green-500">-->
+      <!--    </fa-icon>-->
+      <!--    <fa-icon [icon]="faPaw" [ngClass]="{-->
+      <!--        'text-green-500': open_food === 'on',-->
+      <!--        'text-red-500': open_food === 'off',-->
+      <!--        'text-white-500': open_food !== 'on' && open_food !== 'off'-->
+      <!--      }"-->
+      <!--             class="text-7xl ml-4"></fa-icon>-->
+      <img [src]="emailspinFrame" alt="emailspin">
+    </div>
+
+    <span [ngStyle]="{
         'background-color': temp < 10 ? '#ffcc00' : '#5cb85c',
         'color': '#fff',
         'padding': '0.5rem 1rem',
         'border-radius': '0.80rem'
       }"
-        class="label text-center text-2xl">
+          class="label text-center text-2xl">
     {{ isNaN(temp) ? '???' : temp }} °C
 </span>
 
-  <strong class="mt-2">{{ student }}</strong>
+    <strong class="mt-2">{{ student }}</strong>
+  </div>
 </div>
