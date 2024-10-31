@@ -25,9 +25,9 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   isNaN: Function = Number.isNaN;
   private _spinSpeed: number = 0;
   // 1.Sunray
-  public sunray_pckzy: number = 0;
-  public sunray_somchoon: number = 0;
-  public sunray_ohm: number = 0;
+  @Input() sunray_pckzy!: number;
+  @Input() sunray_somchoon!: number;
+  @Input() sunray_ohm!: number;
   @Input() sunray!: number;
 
   constructor(protected mqttService: Exam67MqttService, private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {

@@ -26,9 +26,6 @@ export class ExamConnectionComponent {
   public current_temp: number = 0;
   public temp_generator: Subscription | null = null;
   protected page_title: string = "PC 2024 Final Exam";
-  private max_temp: number = 50;
-  private min_temp: number = 10;
-  private generator: number = 3;
 
   public studentId: string = '';
   public host: string = 'phycom.it.kmitl.ac.th';
@@ -59,7 +56,7 @@ export class ExamConnectionComponent {
   // Handle MQTT messages
   private handleMqttMessage(message: { topic: string, payload: string }) {
     if (message.topic.endsWith('/emailspin')) {
-      this.mqttService.messageEmail$ = +message.payload;
+      this.mqttService.messageEmailSpin = +message.payload;
     }
     console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
   }
@@ -87,11 +84,12 @@ export class ExamConnectionComponent {
   startTempGenInterval(): void {
     if (this.temp_generator) return;
 
-    let current_temp = 10;
-    this.mqttService.venusTemp = current_temp;
-
     // Subscribe to student's topics
-    const topics = [`${this.studentId}/emailspin`, `${this.studentId}/sunray`, `${this.studentId}/temp`];
+    const topics = [
+      `${this.studentId}/emailspin`,
+      `${this.studentId}/sunray`,
+      `${this.studentId}/temp`
+    ];
 
     topics.forEach((topic) => {
       this.mqttService.subscribeToTopic(topic);
@@ -100,19 +98,44 @@ export class ExamConnectionComponent {
 
     // Start generating temperature every 3 seconds
     this.temp_generator = interval(3000).subscribe(() => {
-      current_temp += this.generator;
-      if (current_temp > this.max_temp) {
-        this.generator = -3;
-      } else if (current_temp <= this.min_temp) {
-        this.generator = 3;
-      }
-      this.mqttService.venusTemp = current_temp;
-
-      // Send temperature message
-      const messagePayload = `${current_temp}`;
-      this.mqttService.sendMessage(`${this.studentId}/venus`, messagePayload);
+      this.updateSunrayValues();
     });
   }
+
+  private updateSunrayValues(): void {
+    const maxSunrayValue = 2000;
+    const deviationLimit = 150;
+
+    // Generate new random values for sunray
+    let newValueSomchoon = this.getRandomSunrayValue(maxSunrayValue, deviationLimit);
+    let newValuePckzy = this.getRandomSunrayValue(maxSunrayValue, deviationLimit, newValueSomchoon);
+    let newValueOhm = this.getRandomSunrayValue(maxSunrayValue, deviationLimit, newValueSomchoon, newValuePckzy);
+
+    // Update the values in the mqttService
+    this.mqttService.sunray_somchoon = newValueSomchoon;
+    this.mqttService.sunray_pckzy = newValuePckzy;
+    this.mqttService.sunray_ohm = newValueOhm;
+
+    // Send the updated values
+    this.mqttService.sendMessage(`${this.studentId}/sunray_somchoon`, `${newValueSomchoon}`);
+    this.mqttService.sendMessage(`${this.studentId}/sunray_pckzy`, `${newValuePckzy}`);
+    this.mqttService.sendMessage(`${this.studentId}/sunray_ohm`, `${newValueOhm}`);
+  }
+
+// Function to generate random sunray values with constraints
+  private getRandomSunrayValue(maxValue: number, deviationLimit: number, ...previousValues: number[]): number {
+    let newValue: number;
+
+    do {
+      // Generate a random number between 1 and maxValue
+      newValue = Math.floor(Math.random() * maxValue) + 1;
+
+      // Check for deviation from previous values
+    } while (previousValues.some((value) => Math.abs(value - newValue) >= deviationLimit));
+
+    return newValue;
+  }
+
 
   stopGenerator(): void {
     if (this.temp_generator) {

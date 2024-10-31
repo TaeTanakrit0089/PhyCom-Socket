@@ -10,8 +10,7 @@ export class Exam67MqttService extends MqttService {
   private _messageLight$: string = '';
   private _messageFood$: string = '';
   private _messageTemp$: string = '';
-  private _messageEmail$: number = 0;
-  private _venusTemp: number = 0;
+  private _messageEmailSpin: number = 0;
   private _student_id: string = '';
 
   private _sunray_pckzy: number = 0;
@@ -51,12 +50,12 @@ export class Exam67MqttService extends MqttService {
     this._sunray = value;
   }
 
-  get messageEmail$(): number {
-    return this._messageEmail$;
+  get messageEmailSpin(): number {
+    return this._messageEmailSpin;
   }
 
-  set messageEmail$(value: number) {
-    this._messageEmail$ = value;
+  set messageEmailSpin(value: number) {
+    this._messageEmailSpin = value;
   }
 
   get messageLight$(): string {
@@ -89,14 +88,6 @@ export class Exam67MqttService extends MqttService {
 
   set student_id(value: string) {
     this._student_id = value;
-  }
-
-  get venusTemp(): number {
-    return this._venusTemp;
-  }
-
-  set venusTemp(value: number) {
-    this._venusTemp = value;
   }
 
   constructor() {
