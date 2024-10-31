@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {MqttService} from '../mqtt.service';
+import {MqttService} from '../../mqtt.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ExamMqttService extends MqttService {
+export class Exam66MqttService extends MqttService {
   // String properties for light, food, and temp
   private _messageLight$: string = '';
   private _messageFood$: string = '';

@@ -5,8 +5,8 @@ import {StudentNodeComponent} from './student-node/student-node.component';
 import {NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from './questions/questions.component';
 import {ExamConnectionComponent} from './exam-connection/exam-connection.component';
-import {ExamMqttService} from '../exam-mqtt.service';
 import {RouterLink} from '@angular/router';
+import {Exam67MqttService} from './exam67-mqtt.service';
 
 @Component({
   selector: 'app-exam67',
@@ -30,7 +30,7 @@ export class Exam67Component {
   public temp_generator: Subscription | null = null;
   protected page_title: string = "PC 2023 Mock Exam";
 
-  constructor(protected mqttService: ExamMqttService, private titleService: Title) {
+  constructor(protected mqttService: Exam67MqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
   }
 }

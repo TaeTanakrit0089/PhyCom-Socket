@@ -5,7 +5,7 @@ import {StudentNodeComponent} from "../student-node/student-node.component";
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from "../questions/questions.component";
 import {FormsModule} from "@angular/forms";
-import {ExamMqttService} from '../../exam-mqtt.service';
+import {Exam66MqttService} from '../exam66-mqtt.service';
 
 
 @Component({
@@ -45,7 +45,7 @@ export class ExamConnectionComponent {
   isConnecting: boolean = false;
 
 
-  constructor(protected mqttService: ExamMqttService, private titleService: Title) {
+  constructor(protected mqttService: Exam66MqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
     this.connectingSubscription = this.mqttService.isConnecting$.subscribe(
       (connecting) => {

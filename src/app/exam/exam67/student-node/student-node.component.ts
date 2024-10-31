@@ -5,7 +5,7 @@ import {faLightbulb, faPaw} from '@fortawesome/free-solid-svg-icons';
 import {EmailSpinService} from '../emaispin.service';
 
 @Component({
-  selector: 'app-student-node',
+  selector: 'exam67-student-node',
   templateUrl: './student-node.component.html',
   standalone: true,
   imports: [FontAwesomeModule, NgStyle],
@@ -18,7 +18,7 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   private _temp: number = 20;
   private _emailspinLocation: string = 'assets/exam67/emailspin/';
   private _intervalId: any;
-  private _spinSpeed: number = 1000;
+  private _spinSpeed: number = 0;
 
   faLightbulb = faLightbulb;
   faPaw = faPaw;
@@ -28,11 +28,8 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId) && this._spinSpeed > 0) {
-      const intervalDelay = this.calculateInterval(this._spinSpeed);
-      this._intervalId = setInterval(() => {
-        this.emailSpinService.incrementFrame();
-      }, intervalDelay);
+    if (isPlatformBrowser(this.platformId)) {
+      this.startEmailSpin();
     }
   }
 
@@ -43,7 +40,6 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   }
 
   get emailspinFrame(): string {
-    // Use the service to get the current frame
     return this._emailspinLocation + 'emailspin-' + this.emailSpinService.getCurrentFrame() + '.png';
   }
 
@@ -94,30 +90,29 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   }
 
   set spinSpeed(value: number) {
-    // Clamp value between 0 and 1024
     this._spinSpeed = Math.max(0, Math.min(value, 1024));
-    // Restart spin if it's already running
+    this.startEmailSpin();  // Restart email spin with updated speed
+  }
+
+  private startEmailSpin(): void {
     if (this._intervalId) {
       clearInterval(this._intervalId);
-      if (this._spinSpeed > 0) {
-        const intervalDelay = this.calculateInterval(this._spinSpeed);
-        this._intervalId = setInterval(() => {
-          this.emailSpinService.incrementFrame();
-        }, intervalDelay);
-      }
+    }
+    if (this._spinSpeed > 0) {
+      const intervalDelay = this.calculateInterval(this._spinSpeed);
+      this._intervalId = setInterval(() => {
+        this.emailSpinService.incrementFrame();
+      }, intervalDelay);
     }
   }
 
   private calculateInterval(speed: number): number {
-    // Define minimum and maximum intervals in milliseconds
-    const minInterval = 15;  // Minimum interval when speed is at maximum (1024)
-    const maxInterval = 150;  // Maximum interval when speed is at minimum (1)
+    const minInterval = 15;
+    const maxInterval = 150;
 
-    if (speed === 0) return Infinity; // No spinning
+    if (speed === 0) return Infinity;
 
-    // Calculate the interval based on the speed
     const interval = maxInterval - ((speed - 1) * (maxInterval - minInterval) / 1023);
-    return Math.max(interval, minInterval); // Ensure it doesn't go below the minimum
+    return Math.max(interval, minInterval);
   }
-
 }

@@ -5,7 +5,7 @@ import {StudentNodeComponent} from "../student-node/student-node.component";
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from "../questions/questions.component";
 import {FormsModule} from "@angular/forms";
-import {ExamMqttService} from '../../exam-mqtt.service';
+import {Exam67MqttService} from '../exam67-mqtt.service';
 
 
 @Component({
@@ -35,19 +35,12 @@ export class ExamConnectionComponent {
   public port: string = '8884';
   public client_ID: string = 'client_' + Math.random().toString(16).substr(2, 8);
 
-  // Variables to store message data
-  public currentFrame = ''
-
-  public MESSAGE_LIGHT: string = '0';
-  public MESSAGE_FOOD: string = 'off';
-  public MESSAGE_TEMP: string = '20';
-
   public showSuccessBorder: boolean = false;
   private connectingSubscription!: Subscription;
   isConnecting: boolean = false;
 
 
-  constructor(protected mqttService: ExamMqttService, private titleService: Title) {
+  constructor(protected mqttService: Exam67MqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
     this.connectingSubscription = this.mqttService.isConnecting$.subscribe(
       (connecting) => {
@@ -65,12 +58,8 @@ export class ExamConnectionComponent {
 
   // Handle MQTT messages
   private handleMqttMessage(message: { topic: string, payload: string }) {
-    if (message.topic.endsWith('/light')) {
-      this.MESSAGE_LIGHT = message.payload;
-    } else if (message.topic.endsWith('/food')) {
-      this.MESSAGE_FOOD = message.payload;
-    } else if (message.topic.endsWith('/temp')) {
-      this.MESSAGE_TEMP = message.payload;
+    if (message.topic.endsWith('/emailspin')) {
+      this.mqttService.messageEmail$ = +message.payload;
     }
     console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
   }
@@ -102,7 +91,7 @@ export class ExamConnectionComponent {
     this.mqttService.venusTemp = current_temp;
 
     // Subscribe to student's topics
-    const topics = [`${this.studentId}/light`, `${this.studentId}/food`, `${this.studentId}/temp`];
+    const topics = [`${this.studentId}/emailspin`, `${this.studentId}/food`, `${this.studentId}/temp`];
 
     topics.forEach((topic) => {
       this.mqttService.subscribeToTopic(topic);
