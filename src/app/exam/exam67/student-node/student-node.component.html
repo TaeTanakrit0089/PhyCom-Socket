@@ -51,32 +51,25 @@
     </div>
   </div>
 
-
   <div
-    class="flex-1 backdrop-blur-md bg-white/50 dark:bg-gray-200/30 p-6 rounded-3xl shadow-lg max-w-sm mx-auto flex flex-col items-center">
-    <div class="flex items-center justify-center mb-4">
-      <!--    <fa-icon [icon]="faLightbulb" [ngClass]="{'text-red-500': light < 512, 'text-green-500': light >= 512}"-->
-      <!--             class="text-7xl text-green-500">-->
-      <!--    </fa-icon>-->
-      <!--    <fa-icon [icon]="faPaw" [ngClass]="{-->
-      <!--        'text-green-500': open_food === 'on',-->
-      <!--        'text-red-500': open_food === 'off',-->
-      <!--        'text-white-500': open_food !== 'on' && open_food !== 'off'-->
-      <!--      }"-->
-      <!--             class="text-7xl ml-4"></fa-icon>-->
-
-    </div>
-
-    <span [ngStyle]="{
-        'background-color': temp < 10 ? '#ffcc00' : '#5cb85c',
+    class="flex-1 backdrop-blur-md bg-gradient-to-r from-white/50 to-gray-100/30 dark:from-gray-800/30 dark:to-gray-900/30 p-8 rounded-3xl shadow-2xl max-w-md mx-auto flex flex-col space-y-6">
+    <div class="flex flex-col gap-4 items-center justify-center mb-4 ">
+      <h1 class="font-extrabold text-2xl text-center text-gray-900 dark:text-white">4. Temperature (1 คะแนน)</h1>
+      <p [ngStyle]="{
+        'background-color': temperature < 10 ? '#ffcc00' : '#5cb85c',
         'color': '#fff',
         'padding': '0.5rem 1rem',
         'border-radius': '0.80rem'
       }"
-          class="label text-center text-2xl">
-    {{ isNaN(temp) ? '???' : temp }} °C
-</span>
-
-    <strong class="mt-2">{{ student }}</strong>
+         class="label text-center text-2xl">
+        {{ isNaN(temperature) ? '???' : temperature }} °C
+      </p>
+      <!--      <strong class="mt-2">{{ mqttService.student_id }}</strong>-->
+    </div>
+    <hr class="border-gray-500">
+    <div class="flex flex-col gap-4 items-center justify-center mb-4 ">
+      <h1 class="font-extrabold text-2xl text-center text-gray-900 dark:text-white">5. Push Button (2 คะแนน)</h1>
+      <fa-icon class="text-8xl" [icon]="mqttService.is_door_open ? faDoorOpen : faDoorClose"></fa-icon>
+    </div>
   </div>
 </div>
