@@ -5,12 +5,12 @@ import {StudentNodeComponent} from './student-node/student-node.component';
 import {NgForOf, NgIf} from '@angular/common';
 import {QuestionsComponent} from './questions/questions.component';
 import {ExamConnectionComponent} from './exam-connection/exam-connection.component';
-import {Exam66MqttService} from './exam66-mqtt.service';
 import {RouterLink} from '@angular/router';
+import {Exam67MqttService} from './exam67-mqtt.service';
 
 @Component({
-  selector: 'app-exam66',
-  templateUrl: './exam66.component.html',
+  selector: 'app-exam67',
+  templateUrl: './exam67.component.html',
   standalone: true,
   imports: [
     StudentNodeComponent,
@@ -21,14 +21,16 @@ import {RouterLink} from '@angular/router';
     RouterLink
   ],
   styleUrls: [
-    './exam66.component.css',
+    './exam67.component.css',
     '../../mqtt/connection/connection.component.css'
   ]
 })
-export class Exam66Component {
+export class Exam67Component {
+  public STUDENTS: string[] = [];
+  public temp_generator: Subscription | null = null;
   protected page_title: string = "PC 2023 Mock Exam";
 
-  constructor(protected mqttService: Exam66MqttService, private titleService: Title) {
+  constructor(protected mqttService: Exam67MqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
   }
 }
