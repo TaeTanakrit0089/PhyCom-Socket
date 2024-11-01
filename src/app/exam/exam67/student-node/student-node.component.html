@@ -1,75 +1,72 @@
-<div class="text-left flex flex-col md:flex-row justify-between w-full gap-5">
+<div class="text-left flex flex-col gap-6 md:gap-8 justify-center items-stretch w-full lg:flex-row lg:items-start">
   <div
-    class="flex-1 backdrop-blur-md bg-gradient-to-r from-white/50 to-gray-100/30 dark:from-gray-800/30 dark:to-gray-900/30 p-8 rounded-3xl shadow-2xl max-w-md mx-auto flex flex-col space-y-6">
-    <h1 class="font-extrabold text-2xl text-center text-gray-900 dark:text-white">1. Sunray (5 คะแนน)</h1>
-    <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm">
+    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col space-y-5 backdrop-blur-md">
+    <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">1. Sunray (5 คะแนน)</h1>
+    <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
       <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg">
         <thead>
         <tr>
-          <th class="py-3 px-5 border-b dark:border-gray-600 text-left text-gray-700 dark:text-gray-300 font-semibold">
+          <th class="py-3 px-4 border-b dark:border-gray-600 text-left text-gray-700 dark:text-gray-300 font-semibold">
             ชื่อถ้ำ
           </th>
-          <th class="py-3 px-5 border-b dark:border-gray-600 text-left text-gray-700 dark:text-gray-300 font-semibold">
+          <th class="py-3 px-4 border-b dark:border-gray-600 text-left text-gray-700 dark:text-gray-300 font-semibold">
             ข้อมูล
           </th>
         </tr>
         </thead>
         <tbody class="text-left divide-y divide-gray-100 dark:divide-gray-700">
         <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-          <td class="py-3 px-5 text-gray-800 dark:text-gray-300">ถ้ำของคุณปิ๊ก</td>
-          <td class="py-3 px-5 text-gray-800 dark:text-gray-300">{{ sunray_pckzy }}</td>
+          <td class="py-3 px-4 text-gray-800 dark:text-gray-300">ถ้ำของคุณปิ๊ก</td>
+          <td class="py-3 px-4 text-gray-800 dark:text-gray-300">{{ sunray_pckzy }}</td>
         </tr>
         <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-          <td class="py-3 px-5 text-gray-800 dark:text-gray-300">ถ้ำของคุณส้มฉุน</td>
-          <td class="py-3 px-5 text-gray-800 dark:text-gray-300">{{ sunray_somchoon }}</td>
+          <td class="py-3 px-4 text-gray-800 dark:text-gray-300">ถ้ำของคุณส้มฉุน</td>
+          <td class="py-3 px-4 text-gray-800 dark:text-gray-300">{{ sunray_somchoon }}</td>
         </tr>
         <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-          <td class="py-3 px-5 text-gray-800 dark:text-gray-300">ถ้ำของคุณโอม</td>
-          <td class="py-3 px-5 text-gray-800 dark:text-gray-300">{{ sunray_ohm }}</td>
+          <td class="py-3 px-4 text-gray-800 dark:text-gray-300">ถ้ำของคุณโอม</td>
+          <td class="py-3 px-4 text-gray-800 dark:text-gray-300">{{ sunray_ohm }}</td>
         </tr>
         </tbody>
       </table>
     </div>
     <p
-      class="text-center text-gray-900 dark:text-gray-200 font-semibold bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+      class="text-center text-gray-900 dark:text-gray-200 font-semibold bg-gray-50 dark:bg-gray-800 rounded-xl p-3 border border-gray-200 dark:border-gray-600">
       ค่าที่สูงที่สุด: {{ sunray }}
     </p>
   </div>
+
   <div
-    class="flex-1 backdrop-blur-md bg-gradient-to-r from-white/50 to-gray-100/30 dark:from-gray-800/30 dark:to-gray-900/30 p-8 rounded-3xl shadow-2xl max-w-md mx-auto flex flex-col space-y-6">
-    <div class="flex flex-col gap-4 items-center justify-center mb-4 ">
-      <h1 class="font-extrabold text-2xl text-center text-gray-900 dark:text-white">2. EmailSpin (1 คะแนน)</h1>
-      <img class="h-[100px]" [src]="emailspinFrame" alt="emailspin">
+    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col space-y-5 backdrop-blur-md">
+    <div class="flex flex-col items-center justify-center space-y-4">
+      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">2. EmailSpin (1 คะแนน)</h1>
+      <img class="h-[80px] md:h-[100px]" [src]="emailspinFrame" alt="emailspin">
     </div>
-    <hr class="border-gray-500">
-    <div class="flex flex-col gap-4 items-center justify-center mb-4 ">
-      <h1 class="font-extrabold text-2xl text-center text-gray-900 dark:text-white">3. 7-segment (1 คะแนน)</h1>
-      <span
-        class="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 dark:text-blue-300">
-        {{ segment_number }}
-      </span>
+    <hr class="border-gray-400 dark:border-gray-600 w-full">
+    <div class="flex flex-col items-center justify-center space-y-4">
+      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">3. 7-segment (1 คะแนน)</h1>
+      <span class="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 dark:text-blue-300">{{ segment_number }}</span>
     </div>
   </div>
 
   <div
-    class="flex-1 backdrop-blur-md bg-gradient-to-r from-white/50 to-gray-100/30 dark:from-gray-800/30 dark:to-gray-900/30 p-8 rounded-3xl shadow-2xl max-w-md mx-auto flex flex-col space-y-6">
-    <div class="flex flex-col gap-4 items-center justify-center mb-4 ">
-      <h1 class="font-extrabold text-2xl text-center text-gray-900 dark:text-white">4. Temperature (1 คะแนน)</h1>
+    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col space-y-5 backdrop-blur-md">
+    <div class="flex flex-col items-center justify-center space-y-4">
+      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">4. Temperature (1 คะแนน)</h1>
       <p [ngStyle]="{
-        'background-color': temperature < 10 ? '#ffcc00' : '#5cb85c',
-        'color': '#fff',
-        'padding': '0.5rem 1rem',
-        'border-radius': '0.80rem'
-      }"
+          'background-color': temperature < 10 ? '#ffcc00' : '#5cb85c',
+          'color': '#fff',
+          'padding': '0.5rem 1rem',
+          'border-radius': '0.80rem'
+        }"
          class="label text-center text-2xl">
         {{ isNaN(temperature) ? '???' : temperature }} °C
       </p>
-      <!--      <strong class="mt-2">{{ mqttService.student_id }}</strong>-->
     </div>
-    <hr class="border-gray-500">
-    <div class="flex flex-col gap-4 items-center justify-center mb-4 ">
-      <h1 class="font-extrabold text-2xl text-center text-gray-900 dark:text-white">5. Push Button (2 คะแนน)</h1>
-      <fa-icon class="text-8xl" [icon]="mqttService.is_door_open ? faDoorOpen : faDoorClose"></fa-icon>
+    <hr class="border-gray-400 dark:border-gray-600 w-full">
+    <div class="flex flex-col items-center justify-center space-y-4">
+      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">5. Push Button (2 คะแนน)</h1>
+      <fa-icon class="text-8xl text-gray-700 dark:text-gray-200" [icon]="mqttService.is_door_open ? faDoorOpen : faDoorClose"></fa-icon>
     </div>
   </div>
 </div>
