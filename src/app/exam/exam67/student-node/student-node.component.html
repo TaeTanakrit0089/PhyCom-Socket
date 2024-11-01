@@ -1,6 +1,7 @@
 <div class="text-left flex flex-col gap-6 md:gap-8 justify-center items-stretch w-full lg:flex-row lg:items-start">
+  <!-- Box 1: Sunray -->
   <div
-    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col space-y-5 backdrop-blur-md">
+    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col justify-between space-y-5 h-full backdrop-blur-md">
     <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">1. Sunray (5 คะแนน)</h1>
     <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
       <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg">
@@ -30,14 +31,14 @@
         </tbody>
       </table>
     </div>
-    <p
-      class="text-center text-gray-900 dark:text-gray-200 font-semibold bg-gray-50 dark:bg-gray-800 rounded-xl p-3 border border-gray-200 dark:border-gray-600">
+    <p class="text-center text-gray-900 dark:text-gray-200 font-semibold bg-gray-50 dark:bg-gray-800 rounded-xl p-3 border border-gray-200 dark:border-gray-600">
       ค่าที่สูงที่สุด: {{ sunray }}
     </p>
   </div>
 
+  <!-- Box 2: EmailSpin and 7-Segment -->
   <div
-    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col space-y-5 backdrop-blur-md">
+    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col justify-between space-y-5 h-full backdrop-blur-md">
     <div class="flex flex-col items-center justify-center space-y-4">
       <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">2. EmailSpin (1 คะแนน)</h1>
       <img class="h-[80px] md:h-[100px]" [src]="emailspinFrame" alt="emailspin">
@@ -49,8 +50,9 @@
     </div>
   </div>
 
+  <!-- Box 3: Temperature and Push Button -->
   <div
-    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col space-y-5 backdrop-blur-md">
+    class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col justify-between space-y-5 h-full backdrop-blur-md">
     <div class="flex flex-col items-center justify-center space-y-4">
       <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">4. Temperature (1 คะแนน)</h1>
       <p [ngStyle]="{

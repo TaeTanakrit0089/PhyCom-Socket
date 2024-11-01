@@ -1,15 +1,5 @@
 <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 dark:text-white text-center">Questions</h1>
-<div
-  class="bg-white dark:bg-gray-800 shadow-md rounded-3xl p-6 transition-transform transform hover:scale-105 mx-auto w-[59%]">
-  <h3 class="sm:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">โจทย์ของข้อสอบที่ละเอียดกว่านี้
-    (แนะนำให้อ่านในนี้)</h3>
-  <a
-    href="assets/exam67/PhyCom67-Final-Arduino.pdf"
-    target="_blank"
-    class="text-xl inline-flex items-center justify-center px-4 py-2 font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md transition-colors duration-200">
-    Load PDF
-  </a>
-</div>
+
 <div class="container mx-auto p-4 sm:p-6">
   <div class="flex flex-col gap-4 sm:gap-6 xl:flex-row md:gap-8">
     <!-- Publish Section -->
@@ -42,8 +32,7 @@
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             Publish ไปที่ topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}
-                /sunray</code>
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/sunray</code>
               <button (click)="copyToClipboard('/sunray')" title="Copy to Clipboard"
                       class="ml-0.5 flex justify-center items-center">
                 <fa-icon [icon]="getIcon('/sunray')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
@@ -57,8 +46,7 @@
           <td class="px-4 py-2 dark:text-white">
             Publish ไปที่ topic
             <div class="flex flex-row items-center mt-1">
-              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}
-                /emailspin</code>
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/emailspin</code>
               <button (click)="copyToClipboard('/emailspin')" title="Copy to Clipboard"
                       class="ml-0.5 flex justify-center items-center">
                 <fa-icon [icon]="getIcon('/emailspin')" class="text-blue-500 text-sm"></fa-icon>
@@ -132,8 +120,7 @@
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             Subscribe ค่าจาก Topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}
-                /sunray</code>
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/sunray</code>
               <button (click)="copyToClipboard('/sunray')" class="ml-0.5 flex justify-center items-center">
                 <fa-icon [icon]="getIcon('/sunray')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
               </button>
@@ -152,8 +139,7 @@
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             อ่านค่าจาก topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}
-                /prob_stat</code>
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/prob_stat</code>
               <button (click)="copyToClipboard('/prob_stat')" class="ml-0.5 flex justify-center items-center">
                 <fa-icon [icon]="getIcon('/prob_stat')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
               </button>
@@ -167,4 +153,15 @@
       </table>
     </div>
   </div>
+</div>
+<div
+  class="bg-white dark:bg-gray-800 shadow-md rounded-3xl p-6 transition-transform transform hover:scale-105 mx-auto w-[59%]">
+  <h3 class="sm:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">โจทย์ของข้อสอบที่ละเอียดกว่านี้
+    (แนะนำให้อ่านในนี้)</h3>
+  <a
+    href="assets/exam67/PhyCom67-Final-Arduino.pdf"
+    target="_blank"
+    class="text-xl inline-flex items-center justify-center px-4 py-2 font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md transition-colors duration-200">
+    Load PDF
+  </a>
 </div>
