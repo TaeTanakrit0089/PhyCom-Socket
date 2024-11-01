@@ -84,7 +84,8 @@ export class ExamConnectionComponent {
     const topics = [
       `${this.studentId}/emailspin`,
       `${this.studentId}/sunray`,
-      `${this.studentId}/temp`
+      `${this.studentId}/temp`,
+      `${this.studentId}/door`,
     ];
 
     topics.forEach((topic) => {

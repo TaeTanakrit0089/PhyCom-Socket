@@ -1,7 +1,7 @@
-import {Component, Inject, Input, numberAttribute, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser, NgStyle} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {faLightbulb, faPaw} from '@fortawesome/free-solid-svg-icons';
+import {faDoorClosed, faDoorOpen} from '@fortawesome/free-solid-svg-icons';
 import {EmailSpinService} from '../emaispin.service';
 import {Exam67MqttService} from '../exam67-mqtt.service';
 
@@ -13,26 +13,28 @@ import {Exam67MqttService} from '../exam67-mqtt.service';
   styleUrls: ['./student-node.component.css'],
 })
 export class StudentNodeComponent implements OnInit, OnDestroy {
-  private _student!: string;
-  private _light: number = 0;
-  private _open_food: string = '';
-  private _temp: number = 20;
-  private _emailspinLocation: string = 'assets/exam67/emailspin/';
-  private _intervalId: any;
-
-  faLightbulb = faLightbulb;
-  faPaw = faPaw;
   isNaN: Function = Number.isNaN;
-  private _spinSpeed: number = 0;
+
   // 1.Sunray
   @Input() sunray_pckzy!: number;
   @Input() sunray_somchoon!: number;
   @Input() sunray_ohm!: number;
   @Input() sunray!: number;
 
+  // 2. EmaiSpin
+  private _emailspinLocation: string = 'assets/exam67/emailspin/';
+  private _spinSpeed: number = 0;
+  private _intervalId: any;
+
   // 3. 7-Segment
   @Input() segment_number!: number;
 
+  // 4, Temperature
+  @Input() temperature!: number;
+
+  // 5. Push Button
+  faDoorOpen = faDoorOpen;
+  faDoorClose = faDoorClosed;
 
   constructor(protected mqttService: Exam67MqttService, private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.sunray_pckzy = this.mqttService.sunray_pckzy
@@ -54,48 +56,6 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   get emailspinFrame(): string {
     return this._emailspinLocation + 'emailspin-' + this.emailSpinService.getCurrentFrame() + '.png';
   }
-
-  // Getter and setter for student
-  @Input()
-  get student(): string {
-    return this._student;
-  }
-
-  set student(value: string) {
-    this._student = value;
-  }
-
-  // Getter and setter for light
-  @Input({transform: numberAttribute})
-  get light(): number {
-    return this._light;
-  }
-
-  set light(value: number) {
-    this._light = value;
-  }
-
-  // Getter and setter for open_food
-  @Input()
-  get open_food(): string {
-    return this._open_food;
-  }
-
-  set open_food(value: string) {
-    this._open_food = value;
-  }
-
-  // Getter and setter for temp
-  @Input({transform: numberAttribute})
-  get temp(): number {
-    return this._temp;
-  }
-
-  set temp(value: number) {
-    this._temp = value;
-  }
-
-  // Getter and setter for spin speed (0 to 1024)
 
   @Input()
   get spinSpeed(): number {
@@ -128,4 +88,6 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
     const interval = maxInterval - ((speed - 1) * (maxInterval - minInterval) / 1023);
     return Math.max(interval, minInterval);
   }
+
+  protected readonly faDoorClosed = faDoorClosed;
 }

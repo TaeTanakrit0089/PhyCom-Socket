@@ -5,15 +5,15 @@ import {MqttService} from '../../mqtt.service';
   providedIn: 'root',
 })
 export class Exam67MqttService extends MqttService {
-  get segment_number(): number {
-    return this._segment_number;
+  get is_door_open(): boolean {
+    return this._is_door_open;
   }
 
-  set segment_number(value: number) {
-    this._segment_number = value;
+  set is_door_open(value: boolean) {
+    this._is_door_open = value;
   }
 
-// String properties for light, food, and temp
+  // String properties for light, food, and temp
   private _student_id: string = '';
 
   // 1. Sunray
@@ -27,6 +27,29 @@ export class Exam67MqttService extends MqttService {
 
   // 3. 7-Segment
   private _segment_number: number = 0;
+
+  // 4. Temperature
+  private _temperature: number = NaN;
+
+  // 5. Open Door
+  private _is_door_open: boolean = false;
+
+  get temperature(): number {
+    return this._temperature;
+  }
+
+  set temperature(value: number) {
+    this._temperature = value;
+  }
+
+  get segment_number(): number {
+    return this._segment_number;
+  }
+
+  set segment_number(value: number) {
+    this._segment_number = value;
+  }
+
 
   get sunray_pckzy(): number {
     return this._sunray_pckzy;
@@ -90,6 +113,9 @@ export class Exam67MqttService extends MqttService {
     } else if (topic.endsWith('/sunray')) {
       this.sunray = +payload;
     } else if (topic.endsWith('/temp')) {
+      this._temperature = +payload;
+    } else if (topic.endsWith('/door')) {
+      this._is_door_open = payload.toLowerCase() === 'on';
     }
   }
 }
