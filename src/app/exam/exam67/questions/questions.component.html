@@ -24,20 +24,24 @@
         <tbody>
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-2 sm:px-4 py-2 dark:text-white">1</td>
-          <td class="px-2 sm:px-4 py-2 dark:text-white">อ่านค่าจาก Sensor อุณหภูมิ</td>
+          <td class="px-2 sm:px-4 py-2 dark:text-white">ดึงค่ารังสีจาก topic student_id/sunray_pckzy, <br>
+                                                                  student_id/sunray_somchoon, <br>
+                                                                  student_id/sunray_ohm
+                                                                  <br>ทุกๆ 1-2 วินาที
+          </td>
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             Publish ไปที่ topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/temp</code>
-              <button (click)="copyToClipboard('/temp')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
-                <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/sunray</code>
+              <button (click)="copyToClipboard('/sunray')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/sunray')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
               </button>
             </div>
           </td>
         </tr>
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-4 py-2 dark:text-white">2</td>
-          <td class="px-4 py-2 dark:text-white">อ่านค่าจาก ตัวต้านทานปรับค่าได้ แล้วแสดงค่า (0-1023)</td>
+          <td class="px-4 py-2 dark:text-white">อ่านค่าจาก ตัวต้านทานปรับค่าได้ แล้วแสดงค่า (0-1024)</td>
           <td class="px-4 py-2 dark:text-white">
             Publish ไปที่ topic
             <div class="flex flex-row items-center mt-1">
@@ -50,13 +54,49 @@
         </tr>
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-4 py-2 dark:text-white">3</td>
-          <td class="px-4 py-2 dark:text-white">อ่านค่าระยะทางจาก Ultrasonic หน่วยเป็น cm</td>
+          <td class="px-4 py-2 dark:text-white">อ่านค่าจาก topic student_id/prob_stat<br> แล้วแสดงค่าที่อ่านได้บนจอ<br> 7-segment ขนาด 1 ตัวเลข</td>
+<!--          <td class="px-4 py-2 dark:text-white">-->
+<!--            ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic-->
+<!--            <div class="flex flex-row items-center">-->
+<!--              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/food</code>-->
+<!--              <button (click)="copyToClipboard('/food')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">-->
+<!--                <fa-icon [icon]="getIcon('/food')" class="text-blue-500 text-sm"></fa-icon>-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </td>-->
+        </tr>
+        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-4 py-2 dark:text-white">4</td>
+          <td class="px-4 py-2 dark:text-white">วัดค่าอุณหภูมิ</td> topic student_id
           <td class="px-4 py-2 dark:text-white">
-            ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic
+            Publish ไปที่ topic
+            <div class="flex flex-row items-center mt-1">
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/temp</code>
+              <button (click)="copyToClipboard('/temp')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-sm"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <td class="px-4 py-2 dark:text-white">5</td>
+          <td class="px-4 py-2 dark:text-white">อ่านค่าจาก Ultrasonic หน่วยเป็น cm</td>
+          <td class="px-4 py-2 dark:text-white">
+            ถ้ามากกว่าหรือเท่ากับ 20 cm และ กดปุ่ม push button ให้ Publish คำว่า On ไปที่ topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/food</code>
-              <button (click)="copyToClipboard('/food')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
-                <fa-icon [icon]="getIcon('/food')" class="text-blue-500 text-sm"></fa-icon>
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/temp</code>
+              <button (click)="copyToClipboard('/temp')" title="Copy to Clipboard"
+                      class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-sm"></fa-icon>
+              </button>
+            </div>
+            <br>
+            ถ้าน้อยกว่า 20 cm ให้ Publish คำว่า Off ไปที่ topic
+            <div class="flex flex-row items-center">
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/temp</code>
+              <button (click)="copyToClipboard('/temp')" title="Copy to Clipboard"
+                      class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>
           </td>
@@ -90,17 +130,18 @@
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             Subscribe ค่าจาก Topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/venus</code>
-              <button (click)="copyToClipboard('/venus')" class="ml-0.5 flex justify-center items-center">
-                <fa-icon [icon]="getIcon('/venus')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/sunray</code>
+              <button (click)="copyToClipboard('/sunray')" class="ml-0.5 flex justify-center items-center">
+                <fa-icon [icon]="getIcon('/sunray')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
               </button>
             </div>
           </td>
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             นำค่าที่รับได้ แสดงผลออกทาง Color LED ดังนี้<br>
-            หากค่าตั้งแต่ 36 - 50 ให้ LED เป็นสีแดง<br>
-            หากค่าตั้งแต่ 26 - 35 ให้ LED เป็นสีฟ้า<br>
-            หากค่าตั้งแต่ 10 - 25 ให้ LED เป็นสีเขียว
+            - หากค่ารังสีมากกว่า 1,000 ให้ LED เป็นสีม่วง<br>
+            - หากค่ารังสีตั้งแต่ 700 – 1,000 ให้ LED เป็นสีแดง<br>
+            - หากค่ารังสีตั้งแต่ 300 - 700 ให้ LED เป็นสีส้ม<br>
+            - หากค่ารังสีน้อยกว่า 300 ให้ LED เป็นสีเขียวอมฟ้า<br>
           </td>
         </tr>
         </tbody>
