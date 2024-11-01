@@ -30,6 +30,10 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   @Input() sunray_ohm!: number;
   @Input() sunray!: number;
 
+  // 3. 7-Segment
+  @Input() segment_number!: number;
+
+
   constructor(protected mqttService: Exam67MqttService, private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.sunray_pckzy = this.mqttService.sunray_pckzy
     this.sunray = this.mqttService.sunray

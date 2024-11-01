@@ -5,18 +5,28 @@ import {MqttService} from '../../mqtt.service';
   providedIn: 'root',
 })
 export class Exam67MqttService extends MqttService {
+  get segment_number(): number {
+    return this._segment_number;
+  }
 
-  // String properties for light, food, and temp
-  private _messageLight$: string = '';
-  private _messageFood$: string = '';
-  private _messageTemp$: string = '';
-  private _messageEmailSpin: number = 0;
+  set segment_number(value: number) {
+    this._segment_number = value;
+  }
+
+// String properties for light, food, and temp
   private _student_id: string = '';
 
+  // 1. Sunray
   private _sunray_pckzy: number = 0;
   private _sunray_somchoon: number = 0;
   private _sunray_ohm: number = 0;
   private _sunray: number = 0;
+
+  // 2. EmailSpin
+  private _messageEmailSpin: number = 0;
+
+  // 3. 7-Segment
+  private _segment_number: number = 0;
 
   get sunray_pckzy(): number {
     return this._sunray_pckzy;
@@ -58,30 +68,6 @@ export class Exam67MqttService extends MqttService {
     this._messageEmailSpin = value;
   }
 
-  get messageLight$(): string {
-    return this._messageLight$;
-  }
-
-  set messageLight$(value: string) {
-    this._messageLight$ = value;
-  }
-
-  get messageFood$(): string {
-    return this._messageFood$;
-  }
-
-  set messageFood$(value: string) {
-    this._messageFood$ = value;
-  }
-
-  get messageTemp$(): string {
-    return this._messageTemp$;
-  }
-
-  set messageTemp$(value: string) {
-    this._messageTemp$ = value;
-  }
-
   get student_id(): string {
     return this._student_id;
   }
@@ -100,11 +86,10 @@ export class Exam67MqttService extends MqttService {
 
   handleIncomingMessage(topic: string, payload: string) {
     if (topic.endsWith('/emailspin')) {
-      this._messageLight$ = payload;
+      this._messageEmailSpin = +payload;
     } else if (topic.endsWith('/sunray')) {
       this.sunray = +payload;
     } else if (topic.endsWith('/temp')) {
-      this._messageTemp$ = payload;
     }
   }
 }

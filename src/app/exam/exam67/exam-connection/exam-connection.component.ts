@@ -23,7 +23,6 @@ import {Exam67MqttService} from '../exam67-mqtt.service';
   styleUrls: ['./exam-connection.component.css', '../../../mqtt/connection/connection.component.css']
 })
 export class ExamConnectionComponent {
-  public current_temp: number = 0;
   public temp_generator: Subscription | null = null;
   protected page_title: string = "PC 2024 Final Exam";
 
@@ -55,9 +54,6 @@ export class ExamConnectionComponent {
 
   // Handle MQTT messages
   private handleMqttMessage(message: { topic: string, payload: string }) {
-    if (message.topic.endsWith('/emailspin')) {
-      this.mqttService.messageEmailSpin = +message.payload;
-    }
     console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
   }
 
@@ -110,16 +106,19 @@ export class ExamConnectionComponent {
     let newValueSomchoon = this.getRandomSunrayValue(maxSunrayValue, deviationLimit);
     let newValuePckzy = this.getRandomSunrayValue(maxSunrayValue, deviationLimit, newValueSomchoon);
     let newValueOhm = this.getRandomSunrayValue(maxSunrayValue, deviationLimit, newValueSomchoon, newValuePckzy);
+    let newValueSegment = Math.floor(Math.random() * 10);
 
     // Update the values in the mqttService
     this.mqttService.sunray_somchoon = newValueSomchoon;
     this.mqttService.sunray_pckzy = newValuePckzy;
     this.mqttService.sunray_ohm = newValueOhm;
+    this.mqttService.segment_number = newValueSegment;
 
     // Send the updated values
     this.mqttService.sendMessage(`${this.studentId}/sunray_somchoon`, `${newValueSomchoon}`);
     this.mqttService.sendMessage(`${this.studentId}/sunray_pckzy`, `${newValuePckzy}`);
     this.mqttService.sendMessage(`${this.studentId}/sunray_ohm`, `${newValueOhm}`);
+    this.mqttService.sendMessage(`${this.studentId}/prob_stat`, `${newValueSegment}`);
   }
 
 // Function to generate random sunray values with constraints
