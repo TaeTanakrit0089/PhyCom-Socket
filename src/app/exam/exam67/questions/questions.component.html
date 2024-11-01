@@ -58,7 +58,7 @@
         </tr>
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-4 py-2 dark:text-white">4</td>
-          <td class="px-4 py-2 dark:text-white">วัดค่าอุณหภูมิ</td> topic student_id
+          <td class="px-4 py-2 dark:text-white">วัดค่าอุณหภูมิ topic student_id</td>
           <td class="px-4 py-2 dark:text-white">
             Publish ไปที่ topic
             <div class="flex flex-row items-center mt-1">
@@ -75,10 +75,10 @@
           <td class="px-4 py-2 dark:text-white">
             ถ้ามากกว่าหรือเท่ากับ 20 cm และ กดปุ่ม push button ให้ Publish คำว่า On ไปที่ topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/temp</code>
-              <button (click)="copyToClipboard('/temp')" title="Copy to Clipboard"
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/door</code>
+              <button (click)="copyToClipboard('/door')" title="Copy to Clipboard"
                       class="ml-0.5 flex justify-center items-center">
-                <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-sm"></fa-icon>
+                <fa-icon [icon]="getIcon('/door')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>
             <br>
@@ -129,11 +129,12 @@
           </td>
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             นำค่าที่รับได้ แสดงผลออกทาง Color LED ดังนี้<br>
-            - หากค่ารังสีมากกว่า 1,000 ให้ LED เป็นสีม่วง<br>
-            - หากค่ารังสีตั้งแต่ 700 – 1,000 ให้ LED เป็นสีแดง<br>
-            - หากค่ารังสีตั้งแต่ 300 - 700 ให้ LED เป็นสีส้ม<br>
-            - หากค่ารังสีน้อยกว่า 300 ให้ LED เป็นสีเขียวอมฟ้า<br>
+            - หากค่ารังสีมากกว่า 1,000 ให้ LED เป็น<br><span style="color: #ff00ff;">สีม่วง</span><br>
+            - หากค่ารังสีตั้งแต่ 700 – 1,000 ให้ LED เป็น<span style="color: #ff0000;">สีแดง</span><br>
+            - หากค่ารังสีตั้งแต่ 300 - 700 ให้ LED เป็น<br><span style="color: #ff8000;">สีส้ม</span><br>
+            - หากค่ารังสีน้อยกว่า 300 ให้ LED เป็น<br><span style="color: #00ffff;">สีเขียวอมฟ้า</span><br>
           </td>
+
         </tr>
         </tbody>
       </table>
