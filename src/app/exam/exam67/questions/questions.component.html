@@ -24,10 +24,10 @@
         <tbody>
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-2 sm:px-4 py-2 dark:text-white">1</td>
-          <td class="px-2 sm:px-4 py-2 dark:text-white">ดึงค่ารังสีจาก topic student_id/sunray_pckzy, <br>
-                                                                  student_id/sunray_somchoon, <br>
-                                                                  student_id/sunray_ohm
-                                                                  <br>ทุกๆ 1-2 วินาที
+          <td class="px-2 sm:px-4 py-2 dark:text-white">ดึงค่ารังสีจาก topic student_id/sunray_pckzy,<br>
+                                                                  student_id/sunray_somchoon,<br>
+                                                                  student_id/sunray_ohm<br>
+                                                                  ทุกๆ 1-2 วินาที
           </td>
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             Publish ไปที่ topic
@@ -55,15 +55,6 @@
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-4 py-2 dark:text-white">3</td>
           <td class="px-4 py-2 dark:text-white">อ่านค่าจาก topic student_id/prob_stat<br> แล้วแสดงค่าที่อ่านได้บนจอ<br> 7-segment ขนาด 1 ตัวเลข</td>
-<!--          <td class="px-4 py-2 dark:text-white">-->
-<!--            ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic-->
-<!--            <div class="flex flex-row items-center">-->
-<!--              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/food</code>-->
-<!--              <button (click)="copyToClipboard('/food')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">-->
-<!--                <fa-icon [icon]="getIcon('/food')" class="text-blue-500 text-sm"></fa-icon>-->
-<!--              </button>-->
-<!--            </div>-->
-<!--          </td>-->
         </tr>
         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
           <td class="px-4 py-2 dark:text-white">4</td>
@@ -93,10 +84,10 @@
             <br>
             ถ้าน้อยกว่า 20 cm ให้ Publish คำว่า Off ไปที่ topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/temp</code>
-              <button (click)="copyToClipboard('/temp')" title="Copy to Clipboard"
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/door</code>
+              <button (click)="copyToClipboard('/door')" title="Copy to Clipboard"
                       class="ml-0.5 flex justify-center items-center">
-                <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-sm"></fa-icon>
+                <fa-icon [icon]="getIcon('/door')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>
           </td>
