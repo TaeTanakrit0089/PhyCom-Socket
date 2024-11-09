@@ -60,13 +60,13 @@
           <button
             (click)="connect()"
             *ngIf="!mqttService.isConnected"
-            [disabled]="isConnecting"
-            [title]="isConnecting ? 'Connecting to MQTT broker' : 'Connect to MQTT broker'"
             [class]="
               isConnecting
                 ? 'cursor-not-allowed bg-gray-600'
                 : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
             "
+            [disabled]="isConnecting"
+            [title]="isConnecting ? 'Connecting to MQTT broker' : 'Connect to MQTT broker'"
             class="px-3 h-[42px] w-full text-white rounded"
             type="button"
           >
@@ -96,9 +96,9 @@
           <button
             (click)="disconnect()"
             *ngIf="mqttService.isConnected"
+            [title]="'Disconnect from MQTT broker'"
             class="h-[42px] px-3 w-full text-white bg-red-600 hover:bg-red-700 active:bg-red-800 rounded"
             type="button"
-            [title]="'Disconnect from MQTT broker'"
           >
             <span class="flex items-center gap-x-2 w-full justify-center">
               <span
@@ -180,11 +180,11 @@
       class="text-center font-bold text-xl bg-opacity-50 mt-5"
     >
       {{
-        isConnecting === true
+        isConnecting
           ? "Connecting"
           : mqttService.isConnected
-          ? "Connected"
-          : "Not connected"
+            ? "Connected"
+            : "Not connected"
       }}
     </h3>
   </div>

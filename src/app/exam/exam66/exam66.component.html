@@ -18,11 +18,11 @@
       <hr class="my-4 sm:my-6 border-gray-300 dark:border-gray-700">
 
       <ul class="flex flex-wrap justify-center mt-4">
-        <app-student-node [student]="mqttService.student_id"
+        <app-student-node *ngIf="mqttService.isConnected"
                           [light]="mqttService.messageLight$"
-                          [temp]="mqttService.messageTemp$"
                           [open_food]="mqttService.messageFood$"
-                          *ngIf="mqttService.isConnected"
+                          [student]="mqttService.student_id"
+                          [temp]="mqttService.messageTemp$"
                           class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
         </app-student-node>
       </ul>

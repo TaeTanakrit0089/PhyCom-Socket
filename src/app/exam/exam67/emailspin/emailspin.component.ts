@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-email-spin',
@@ -12,7 +12,8 @@ export class EmailSpinComponent implements OnInit, OnDestroy {
   frameIndex = 0;
   frameSpeed = 100; // Speed in milliseconds
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
     // Load all the frames

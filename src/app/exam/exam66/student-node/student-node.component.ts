@@ -16,21 +16,14 @@ import {faLightbulb, faPaw} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./student-node.component.css']
 })
 export class StudentNodeComponent implements OnInit {
-  private _student!: string;
-  private _light: number = 0;
-  private _open_food: string = '';
-  private _temp: number = 20;
-
   faLightbulb = faLightbulb;
   faPaw = faPaw;
   isNaN: Function = Number.isNaN;
 
-
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
+  private _student!: string;
 
   // Getter and setter for student
   @Input()
@@ -42,6 +35,8 @@ export class StudentNodeComponent implements OnInit {
     this._student = value;
   }
 
+  private _light: number = 0;
+
   // Getter and setter for light
   @Input({transform: numberAttribute})
   get light(): number {
@@ -51,6 +46,8 @@ export class StudentNodeComponent implements OnInit {
   set light(value: number) {
     this._light = value;
   }
+
+  private _open_food: string = '';
 
   // Getter and setter for open_food
   @Input()
@@ -62,6 +59,8 @@ export class StudentNodeComponent implements OnInit {
     this._open_food = value;
   }
 
+  private _temp: number = 20;
+
   // Getter and setter for temp
   @Input({transform: numberAttribute})
   get temp(): number {
@@ -70,5 +69,8 @@ export class StudentNodeComponent implements OnInit {
 
   set temp(value: number) {
     this._temp = value;
+  }
+
+  ngOnInit(): void {
   }
 }

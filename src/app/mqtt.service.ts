@@ -6,17 +6,13 @@ import {BehaviorSubject, Subject} from 'rxjs';
   providedIn: 'root',
 })
 export class MqttService {
-  private _client!: Client;
   private _isConnecting: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); // Add isConnecting
-  private _isConnected = false;
   private _isConnectedGlobal: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); // Use BehaviorSubject
-  private _reconnectAttempts = 0; // Track the number of reconnection attempts
-  private _maxReconnectAttempts = 5; // Maximum number of reconnection attempts
-  private _reconnectDelay = 1000; // Initial delay for reconnection in milliseconds
 
-  get isConnecting$(): BehaviorSubject<boolean> { // Expose as Observable
-    return this._isConnecting;
+  constructor() {
   }
+
+  private _client!: Client;
 
   get client(): Paho.MQTT.Client {
     return this._client;
@@ -26,6 +22,8 @@ export class MqttService {
     this._client = value;
   }
 
+  private _isConnected = false;
+
   get isConnected(): boolean {
     return this._isConnected;
   }
@@ -34,10 +32,7 @@ export class MqttService {
     this._isConnected = value;
   }
 
-  get isConnectedGlobal$(): BehaviorSubject<boolean> { // Expose as Observable
-    return this._isConnectedGlobal;
-  }
-
+  private _reconnectAttempts = 0; // Track the number of reconnection attempts
 
   get reconnectAttempts(): number {
     return this._reconnectAttempts;
@@ -47,6 +42,8 @@ export class MqttService {
     this._reconnectAttempts = value;
   }
 
+  private _maxReconnectAttempts = 5; // Maximum number of reconnection attempts
+
   get maxReconnectAttempts(): number {
     return this._maxReconnectAttempts;
   }
@@ -54,6 +51,8 @@ export class MqttService {
   set maxReconnectAttempts(value: number) {
     this._maxReconnectAttempts = value;
   }
+
+  private _reconnectDelay = 1000; // Initial delay for reconnection in milliseconds
 
   get reconnectDelay(): number {
     return this._reconnectDelay;
@@ -63,18 +62,23 @@ export class MqttService {
     this._reconnectDelay = value;
   }
 
+  get isConnecting$(): BehaviorSubject<boolean> { // Expose as Observable
+    return this._isConnecting;
+  }
+
+  get isConnectedGlobal$(): BehaviorSubject<boolean> { // Expose as Observable
+    return this._isConnectedGlobal;
+  }
+
+// Subject to broadcast messages
+  private _messageArrived$ = new Subject<{ topic: string, payload: string }>();
+
   get messageArrived$(): Subject<{ topic: string; payload: string }> {
     return this._messageArrived$;
   }
 
   set messageArrived$(value: Subject<{ topic: string; payload: string }>) {
     this._messageArrived$ = value;
-  }
-
-// Subject to broadcast messages
-  private _messageArrived$ = new Subject<{ topic: string, payload: string }>();
-
-  constructor() {
   }
 
   // Connect the MQTT client

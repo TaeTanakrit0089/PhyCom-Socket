@@ -24,17 +24,14 @@ import {Exam67MqttService} from '../exam67-mqtt.service';
 })
 export class ExamConnectionComponent {
   public temp_generator: Subscription | null = null;
-  protected page_title: string = "PC 2024 Final Exam";
-
   public studentId: string = '';
   public host: string = 'phycom.it.kmitl.ac.th';
   public port: string = '8884';
   public client_ID: string = 'client_' + Math.random().toString(16).substr(2, 8);
-
   public showSuccessBorder: boolean = false;
-  private connectingSubscription!: Subscription;
   isConnecting: boolean = false;
-
+  protected page_title: string = "PC 2024 Final Exam";
+  private connectingSubscription!: Subscription;
 
   constructor(protected mqttService: Exam67MqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
@@ -50,11 +47,6 @@ export class ExamConnectionComponent {
     this.mqttService.messageArrived$.subscribe((message) => {
       this.handleMqttMessage(message);
     });
-  }
-
-  // Handle MQTT messages
-  private handleMqttMessage(message: { topic: string, payload: string }) {
-    console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
   }
 
   // Start the temperature generator
@@ -99,6 +91,25 @@ export class ExamConnectionComponent {
     });
   }
 
+  stopGenerator(): void {
+    if (this.temp_generator) {
+      this.temp_generator.unsubscribe();
+      this.temp_generator = null;
+    }
+    this.mqttService.disconnect();
+  }
+
+  handleSubmit() {
+    if (this.studentId) {
+      this.startGenerator();
+    }
+  }
+
+  // Handle MQTT messages
+  private handleMqttMessage(message: { topic: string, payload: string }) {
+    console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
+  }
+
   private updateSunrayValues(): void {
     const maxSunrayValue = 2000;
     const deviationLimit = 150;
@@ -134,20 +145,5 @@ export class ExamConnectionComponent {
     } while (previousValues.some((value) => Math.abs(value - newValue) >= deviationLimit));
 
     return newValue;
-  }
-
-
-  stopGenerator(): void {
-    if (this.temp_generator) {
-      this.temp_generator.unsubscribe();
-      this.temp_generator = null;
-    }
-    this.mqttService.disconnect();
-  }
-
-  handleSubmit() {
-    if (this.studentId) {
-      this.startGenerator();
-    }
   }
 }

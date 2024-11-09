@@ -1,28 +1,28 @@
 .subscription-enter {
-    animation: flash-in 250ms ease-out;
+  animation: flash-in 250ms ease-out;
+}
+
+@keyframes flash-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
   }
-  
-  @keyframes flash-in {
-    0% {
-      opacity: 0;
-      transform: translateY(-15px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
 #scrollbar::-webkit-scrollbar {
-    height: 5px;
+  height: 5px;
 }
 
 #scrollbar::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: #ffffff70;
+  border-radius: 8px;
+  background-color: #ffffff70;
 }
 
 #scrollbar::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background-color: #5e5e5e;
+  border-radius: 6px;
+  background-color: #5e5e5e;
 }

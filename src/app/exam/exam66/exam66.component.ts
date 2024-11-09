@@ -1,4 +1,3 @@
-import {Subscription} from 'rxjs';
 import {Title} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {StudentNodeComponent} from './student-node/student-node.component';

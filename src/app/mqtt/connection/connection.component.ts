@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MqttService} from '../../mqtt.service';
 import {FormsModule} from '@angular/forms';
 import {NgClass, NgIf} from '@angular/common';
-import { Subscription } from 'rxjs/internal/Subscription';
+import {Subscription} from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-connection',

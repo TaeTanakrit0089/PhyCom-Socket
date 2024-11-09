@@ -5,13 +5,16 @@ import {MqttService} from '../../mqtt.service';
   providedIn: 'root',
 })
 export class Exam66MqttService extends MqttService {
+  constructor() {
+    super();
+    // Subscribe to message events
+    this.messageArrived$.subscribe(({topic, payload}) => {
+      this.handleIncomingMessage(topic, payload);
+    });
+  }
+
   // String properties for light, food, and temp
   private _messageLight$: string = '';
-  private _messageFood$: string = '';
-  private _messageTemp$: string = '';
-  private _venusTemp: number = 0;
-  private _student_id: string = '';
-
 
   get messageLight$(): string {
     return this._messageLight$;
@@ -21,6 +24,8 @@ export class Exam66MqttService extends MqttService {
     this._messageLight$ = value;
   }
 
+  private _messageFood$: string = '';
+
   get messageFood$(): string {
     return this._messageFood$;
   }
@@ -28,6 +33,8 @@ export class Exam66MqttService extends MqttService {
   set messageFood$(value: string) {
     this._messageFood$ = value;
   }
+
+  private _messageTemp$: string = '';
 
   get messageTemp$(): string {
     return this._messageTemp$;
@@ -37,13 +44,7 @@ export class Exam66MqttService extends MqttService {
     this._messageTemp$ = value;
   }
 
-  get student_id(): string {
-    return this._student_id;
-  }
-
-  set student_id(value: string) {
-    this._student_id = value;
-  }
+  private _venusTemp: number = 0;
 
   get venusTemp(): number {
     return this._venusTemp;
@@ -53,12 +54,14 @@ export class Exam66MqttService extends MqttService {
     this._venusTemp = value;
   }
 
-  constructor() {
-    super();
-    // Subscribe to message events
-    this.messageArrived$.subscribe(({topic, payload}) => {
-      this.handleIncomingMessage(topic, payload);
-    });
+  private _student_id: string = '';
+
+  get student_id(): string {
+    return this._student_id;
+  }
+
+  set student_id(value: string) {
+    this._student_id = value;
   }
 
   handleIncomingMessage(topic: string, payload: string) {

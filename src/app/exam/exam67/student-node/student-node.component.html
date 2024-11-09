@@ -31,7 +31,8 @@
         </tbody>
       </table>
     </div>
-    <p class="text-center text-gray-900 dark:text-gray-200 font-semibold bg-gray-50 dark:bg-gray-800 rounded-xl p-3 border border-gray-200 dark:border-gray-600">
+    <p
+      class="text-center text-gray-900 dark:text-gray-200 font-semibold bg-gray-50 dark:bg-gray-800 rounded-xl p-3 border border-gray-200 dark:border-gray-600">
       ค่าที่สูงที่สุด: {{ sunray }}
     </p>
   </div>
@@ -40,13 +41,16 @@
   <div
     class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col justify-between space-y-5 h-full backdrop-blur-md">
     <div class="flex flex-col items-center justify-center space-y-4">
-      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">2. EmailSpin (1 คะแนน)</h1>
-      <img class="h-[80px] md:h-[100px]" [src]="emailspinFrame" alt="emailspin">
+      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">2. EmailSpin (1
+        คะแนน)</h1>
+      <img [src]="emailspinFrame" alt="emailspin" class="h-[80px] md:h-[100px]">
     </div>
     <hr class="border-gray-400 dark:border-gray-600 w-full">
     <div class="flex flex-col items-center justify-center space-y-4">
-      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">3. 7-segment (1 คะแนน)</h1>
-      <span class="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 dark:text-blue-300">{{ segment_number }}</span>
+      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">3. 7-segment (1
+        คะแนน)</h1>
+      <span
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 dark:text-blue-300">{{ segment_number }}</span>
     </div>
   </div>
 
@@ -54,7 +58,8 @@
   <div
     class="w-full lg:flex-1 bg-gradient-to-r from-white/80 to-white/75 dark:from-gray-700/30 dark:to-gray-800/30 p-6 md:p-8 rounded-3xl shadow-lg mx-auto flex flex-col justify-between space-y-5 h-full backdrop-blur-md">
     <div class="flex flex-col items-center justify-center space-y-4">
-      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">4. Temperature (1 คะแนน)</h1>
+      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">4. Temperature (1
+        คะแนน)</h1>
       <p [ngStyle]="{
           'background-color': temperature < 10 ? '#ffcc00' : '#5cb85c',
           'color': '#fff',
@@ -67,8 +72,10 @@
     </div>
     <hr class="border-gray-400 dark:border-gray-600 w-full">
     <div class="flex flex-col items-center justify-center space-y-4">
-      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">5. Push Button (2 คะแนน)</h1>
-      <fa-icon class="text-8xl text-gray-700 dark:text-gray-200" [icon]="mqttService.is_door_open ? faDoorOpen : faDoorClose"></fa-icon>
+      <h1 class="font-extrabold text-xl md:text-2xl text-center text-gray-900 dark:text-white">5. Push Button (2
+        คะแนน)</h1>
+      <fa-icon [icon]="mqttService.is_door_open ? faDoorOpen : faDoorClose"
+               class="text-8xl text-gray-700 dark:text-gray-200"></fa-icon>
     </div>
   </div>
 </div>

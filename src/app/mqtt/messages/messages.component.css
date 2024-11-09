@@ -1,28 +1,28 @@
 .message-enter {
-    animation: flash-in 200ms ease-out;
+  animation: flash-in 200ms ease-out;
+}
+
+@keyframes flash-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
   }
-  
-  @keyframes flash-in {
-    0% {
-      opacity: 0;
-      transform: translateY(-15px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
 #messagesMain::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 
 #messagesMain::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: #ffffff70;
+  border-radius: 8px;
+  background-color: #ffffff70;
 }
 
 #messagesMain::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background-color: #5e5e5e;
+  border-radius: 6px;
+  background-color: #5e5e5e;
 }

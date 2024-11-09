@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MqttService} from '../../mqtt.service';
 import {FormsModule} from '@angular/forms';
 import {NgForOf, NgStyle} from '@angular/common';
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-subscription',
@@ -19,9 +19,8 @@ export class SubscriptionComponent {
   topic: string = 'testtopic/#';
   qos: number = 0;
   subscribedTopics: { topic: string; bgColor: string }[] = []; // Updated structure
-  private connectionSubscription!: Subscription;
   isConnected: boolean = false;
-
+  private connectionSubscription!: Subscription;
   // Colors that work well in light mode
   private colors: string[] = [
     '#FFCCBC', // Light peach
@@ -67,6 +66,10 @@ export class SubscriptionComponent {
     }
   }
 
+  ngOnDestroy(): void {
+    this.connectionSubscription.unsubscribe();
+  }
+
   private getRandomColor(): string {
     if (this.usedColors.size === this.colors.length) {
       console.warn('All colors have been used. No more unique colors available.');
@@ -81,10 +84,6 @@ export class SubscriptionComponent {
 
     this.usedColors.add(randomColor); // Mark this color as used
     return randomColor;
-  }
-
-  ngOnDestroy(): void {
-    this.connectionSubscription.unsubscribe();
   }
 
 }

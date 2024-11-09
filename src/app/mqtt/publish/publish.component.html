@@ -42,7 +42,7 @@
           </div>
           <div class="flex flex-col">
             <label class="flex items-center justify-start font-medium"
-              >Retain</label
+            >Retain</label
             >
             <div class="w-full h-full flex justify-center items-center">
               <input
@@ -58,9 +58,9 @@
         <div class="flex items-end lg:w-28 w-full">
           <button
             (click)="publishMessage()"
+            [class]="isConnected ? '' : 'cursor-not-allowed'"
             [disabled]="!mqttService.isConnected"
             [title]="mqttService.isConnected ? 'Publish to ' + topic : 'Connect to MQTT broker to publish'"
-            [class]="isConnected ? '' : 'cursor-not-allowed'"
             class="h-[42px] w-full text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:bg-gray-600 rounded"
             type="button"
           >

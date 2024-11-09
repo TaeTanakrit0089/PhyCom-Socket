@@ -28,8 +28,10 @@
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             Publish ไปที่ topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/temp</code>
-              <button (click)="copyToClipboard('/temp')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">
+                {{ getStudentId() }}/temp</code>
+              <button (click)="copyToClipboard('/temp')" class="ml-0.5 flex justify-center items-center"
+                      title="Copy to Clipboard">
                 <fa-icon [icon]="getIcon('/temp')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
               </button>
             </div>
@@ -41,8 +43,10 @@
           <td class="px-4 py-2 dark:text-white">
             Publish ไปที่ topic
             <div class="flex flex-row items-center mt-1">
-              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/light</code>
-              <button (click)="copyToClipboard('/light')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">
+                {{ getStudentId() }}/light</code>
+              <button (click)="copyToClipboard('/light')" class="ml-0.5 flex justify-center items-center"
+                      title="Copy to Clipboard">
                 <fa-icon [icon]="getIcon('/light')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>
@@ -54,8 +58,10 @@
           <td class="px-4 py-2 dark:text-white">
             ถ้ามากกว่า 20 cm ให้ Publish คำว่า off ไปที่ topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">{{ getStudentId() }}/food</code>
-              <button (click)="copyToClipboard('/food')" title="Copy to Clipboard" class="ml-0.5 flex justify-center items-center">
+              <code class="text-green-600 dark:text-green-400 font-bold text-sm px-1">
+                {{ getStudentId() }}/food</code>
+              <button (click)="copyToClipboard('/food')" class="ml-0.5 flex justify-center items-center"
+                      title="Copy to Clipboard">
                 <fa-icon [icon]="getIcon('/food')" class="text-blue-500 text-sm"></fa-icon>
               </button>
             </div>
@@ -90,7 +96,8 @@
           <td class="px-2 sm:px-4 py-2 dark:text-white">
             Subscribe ค่าจาก Topic
             <div class="flex flex-row items-center">
-              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}/venus</code>
+              <code class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm px-1">{{ getStudentId() }}
+                /venus</code>
               <button (click)="copyToClipboard('/venus')" class="ml-0.5 flex justify-center items-center">
                 <fa-icon [icon]="getIcon('/venus')" class="text-blue-500 text-xs sm:text-sm"></fa-icon>
               </button>

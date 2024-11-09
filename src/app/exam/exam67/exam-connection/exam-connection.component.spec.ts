@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ExamConnectionComponent } from './exam-connection.component';
+import {ExamConnectionComponent} from './exam-connection.component';
 
 describe('MqttConnectionComponent', () => {
   let component: ExamConnectionComponent;
@@ -10,7 +10,7 @@ describe('MqttConnectionComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ExamConnectionComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ExamConnectionComponent);
     component = fixture.componentInstance;

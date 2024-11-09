@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MqttService} from '../../mqtt.service';
 import {FormsModule} from '@angular/forms';
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -18,8 +18,8 @@ export class PublishComponent {
   payload: string = '';
   qos: number = 0;
   retain: boolean = false;
-  private connectionSubscription!: Subscription;
   isConnected: boolean = false;
+  private connectionSubscription!: Subscription;
 
   constructor(protected mqttService: MqttService) {
     this.connectionSubscription = this.mqttService.isConnectedGlobal$.subscribe(

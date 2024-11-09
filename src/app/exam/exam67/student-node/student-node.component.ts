@@ -20,25 +20,37 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
   @Input() sunray_somchoon!: number;
   @Input() sunray_ohm!: number;
   @Input() sunray!: number;
-
-  // 2. EmaiSpin
-  private _emailspinLocation: string = 'assets/exam67/emailspin/';
-  private _spinSpeed: number = 0;
-  private _intervalId: any;
-
   // 3. 7-Segment
   @Input() segment_number!: number;
-
   // 4, Temperature
   @Input() temperature!: number;
-
   // 5. Push Button
   faDoorOpen = faDoorOpen;
   faDoorClose = faDoorClosed;
+  protected readonly faDoorClosed = faDoorClosed;
+  // 2. EmaiSpin
+  private _emailspinLocation: string = 'assets/exam67/emailspin/';
+  private _intervalId: any;
 
   constructor(protected mqttService: Exam67MqttService, private emailSpinService: EmailSpinService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.sunray_pckzy = this.mqttService.sunray_pckzy
     this.sunray = this.mqttService.sunray
+  }
+
+  private _spinSpeed: number = 0;
+
+  @Input()
+  get spinSpeed(): number {
+    return this._spinSpeed;
+  }
+
+  set spinSpeed(value: number) {
+    this._spinSpeed = Math.max(0, Math.min(value, 1024));
+    this.startEmailSpin();  // Restart email spin with updated speed
+  }
+
+  get emailspinFrame(): string {
+    return this._emailspinLocation + 'emailspin-' + this.emailSpinService.getCurrentFrame() + '.png';
   }
 
   ngOnInit() {
@@ -51,20 +63,6 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
     if (this._intervalId) {
       clearInterval(this._intervalId);
     }
-  }
-
-  get emailspinFrame(): string {
-    return this._emailspinLocation + 'emailspin-' + this.emailSpinService.getCurrentFrame() + '.png';
-  }
-
-  @Input()
-  get spinSpeed(): number {
-    return this._spinSpeed;
-  }
-
-  set spinSpeed(value: number) {
-    this._spinSpeed = Math.max(0, Math.min(value, 1024));
-    this.startEmailSpin();  // Restart email spin with updated speed
   }
 
   private startEmailSpin(): void {
@@ -88,6 +86,4 @@ export class StudentNodeComponent implements OnInit, OnDestroy {
     const interval = maxInterval - ((speed - 1) * (maxInterval - minInterval) / 1023);
     return Math.max(interval, minInterval);
   }
-
-  protected readonly faDoorClosed = faDoorClosed;
 }

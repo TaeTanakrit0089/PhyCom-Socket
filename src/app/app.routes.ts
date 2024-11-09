@@ -5,7 +5,6 @@ import {Error404Component} from './templates/error-404/error-404.component';
 import {MqttDashboard} from './mqtt/mqtt.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {AboutComponent} from './about/about.component';
-import {RedirectToGoogleComponent} from './redirect.component';
 import {Exam67Component} from './exam/exam67/exam67.component';
 
 export const routes: Routes = [

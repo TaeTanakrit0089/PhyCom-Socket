@@ -11,27 +11,27 @@
         <div class="bg-white dark:bg-gray-800 shadow-md rounded-3xl p-6 transition-transform transform hover:scale-105">
           <h3 class="text-lg sm:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">เอกสารข้อสอบ</h3>
           <a
+            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md transition-colors duration-200"
             href="assets/exam67/PhyCom67-Final-Arduino.pdf"
-            target="_blank"
-            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md transition-colors duration-200">
+            target="_blank">
             Load PDF
           </a>
         </div>
         <div class="bg-white dark:bg-gray-800 shadow-md rounded-3xl p-6 transition-transform transform hover:scale-105">
           <h3 class="text-lg sm:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">ลิงก์ไป GitHub</h3>
           <a
+            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md transition-colors duration-200"
             href="https://github.com/TaeTanakrit0089/PhysicalComputing-167"
-            target="_blank"
-            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md transition-colors duration-200">
+            target="_blank">
             GitHub
           </a>
         </div>
         <div class="bg-white dark:bg-gray-800 shadow-md rounded-3xl p-6 transition-transform transform hover:scale-105">
           <h3 class="text-lg sm:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">เช็คคะแนนสอบ</h3>
           <a
+            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md transition-colors duration-200"
             href="https://bit.ly/PhyCom2024Score"
-            target="_blank"
-            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md transition-colors duration-200">
+            target="_blank">
             Score Sheet
           </a>
         </div>
@@ -43,14 +43,14 @@
       <hr class="my-4 sm:my-6 border-gray-300 dark:border-gray-700">
 
       <exam67-student-node
+        *ngIf="mqttService.isConnected || true"
+        [segment_number]="mqttService.segment_number"
         [spinSpeed]="mqttService.messageEmailSpin"
         [sunray]="mqttService.sunray"
+        [sunray_ohm]="mqttService.sunray_ohm"
         [sunray_pckzy]="mqttService.sunray_pckzy"
         [sunray_somchoon]="mqttService.sunray_somchoon"
-        [sunray_ohm]="mqttService.sunray_ohm"
-        [segment_number]="mqttService.segment_number"
         [temperature]="mqttService.temperature"
-        *ngIf="mqttService.isConnected || true"
         class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
       </exam67-student-node>
 

@@ -25,25 +25,21 @@ import {Exam66MqttService} from '../exam66-mqtt.service';
 export class ExamConnectionComponent {
   public current_temp: number = 0;
   public temp_generator: Subscription | null = null;
-  protected page_title: string = "PC 2023 Mock Exam";
-  private max_temp: number = 50;
-  private min_temp: number = 10;
-  private generator: number = 3;
-
   public studentId: string = '';
   public host: string = 'phycom.it.kmitl.ac.th';
   public port: string = '8884';
   public client_ID: string = 'client_' + Math.random().toString(16).substr(2, 8);
-
   // Variables to store message data
   public MESSAGE_LIGHT: string = '0';
   public MESSAGE_FOOD: string = 'off';
   public MESSAGE_TEMP: string = '20';
-
   public showSuccessBorder: boolean = false;
-  private connectingSubscription!: Subscription;
   isConnecting: boolean = false;
-
+  protected page_title: string = "PC 2023 Mock Exam";
+  private max_temp: number = 50;
+  private min_temp: number = 10;
+  private generator: number = 3;
+  private connectingSubscription!: Subscription;
 
   constructor(protected mqttService: Exam66MqttService, private titleService: Title) {
     this.titleService.setTitle(this.page_title);
@@ -59,18 +55,6 @@ export class ExamConnectionComponent {
     this.mqttService.messageArrived$.subscribe((message) => {
       this.handleMqttMessage(message);
     });
-  }
-
-  // Handle MQTT messages
-  private handleMqttMessage(message: { topic: string, payload: string }) {
-    if (message.topic.endsWith('/light')) {
-      this.MESSAGE_LIGHT = message.payload;
-    } else if (message.topic.endsWith('/food')) {
-      this.MESSAGE_FOOD = message.payload;
-    } else if (message.topic.endsWith('/temp')) {
-      this.MESSAGE_TEMP = message.payload;
-    }
-    console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
   }
 
   // Start the temperature generator
@@ -135,5 +119,17 @@ export class ExamConnectionComponent {
     if (this.studentId) {
       this.startGenerator();
     }
+  }
+
+  // Handle MQTT messages
+  private handleMqttMessage(message: { topic: string, payload: string }) {
+    if (message.topic.endsWith('/light')) {
+      this.MESSAGE_LIGHT = message.payload;
+    } else if (message.topic.endsWith('/food')) {
+      this.MESSAGE_FOOD = message.payload;
+    } else if (message.topic.endsWith('/temp')) {
+      this.MESSAGE_TEMP = message.payload;
+    }
+    console.log(`Topic: ${message.topic}, Payload: ${message.payload}`);
   }
 }
